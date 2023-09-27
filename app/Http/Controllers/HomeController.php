@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 
+use App\Models\Product;
+
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.userpage');
+        $product=Product::paginate(9);
+        return view('home.userpage', compact('product'));
     }
 
     public function redirect()
@@ -23,12 +26,13 @@ class HomeController extends Controller
 
         if ($usertype == "1") {
             return view('admin.home');
-        } else {
-            return view('home.userpage');
+        } 
+        else {
+            $product=Product::paginate(9);
+            return view('home.userpage', compact('product'));
         }
     } else {
-        // User is not authenticated, handle accordingly
-        return redirect()->route('login'); // Redirect to the login page or another appropriate route
+        return redirect()->route('login'); 
     }
 }
 
