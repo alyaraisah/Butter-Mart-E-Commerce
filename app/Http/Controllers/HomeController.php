@@ -20,7 +20,6 @@ class HomeController extends Controller
 
     public function redirect()
     {
-    // Check if a user is authenticated
     if (Auth::check()) {
         $usertype = Auth::user()->usertype;
 
@@ -34,6 +33,14 @@ class HomeController extends Controller
     } else {
         return redirect()->route('login'); 
     }
+    }   
+
+    public function product_details($id)
+    {
+        $product=product::find($id);
+        return view('home.product_details', compact('product'));
+    }
+ 
 }
 
-}
+

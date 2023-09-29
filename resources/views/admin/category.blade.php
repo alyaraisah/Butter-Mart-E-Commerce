@@ -10,11 +10,13 @@
       text-align: center;
       padding-top: 40px;
     }
+    
     .h2_font
     {
       font-size: 40px;
       padding-bottom: 40px;
     }
+
     .input_color
     {
       color: black;
@@ -25,7 +27,18 @@
       width: 50%;
       text-align: center;
       margin-top: 30px;
-      border: 3px solid white;
+      border: 2px solid grey;
+      
+    }
+
+    tr, td 
+    {
+        border: 2px solid grey;
+    }
+
+    .table-title
+    {
+      background-color: #191c24;
     }
   </style>
 
@@ -58,8 +71,8 @@
               <table class="center">
 
                 <tr>
-                  <td>Category Name</td>
-                  <td>Action</td>
+                  <td class="table-title">Category Name</td>
+                  <td class="table-title">Action</td>
                 </tr>
 
                 @foreach($data as $data)

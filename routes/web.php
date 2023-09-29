@@ -29,6 +29,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/', 'HomeController@index');
+
 route::get('/redirect',[HomeController::class,'redirect']);
 
 route::get('/view_category',[AdminController::class,'view_category']);
@@ -48,3 +50,5 @@ route::get('/delete_product/{id}',[AdminController::class,'delete_product']);
 route::get('/update_product/{id}',[AdminController::class,'update_product']);
 
 route::post('/update_product_confirm/{id}',[AdminController::class,'update_product_confirm']);
+
+route::get('/product_details/{id}',[HomeController::class,'product_details']);

@@ -31,6 +31,7 @@
         <!-- slider section -->
         @include('home.slider')
         <!-- end slider section -->
+      </div>
 
         <!-- why section -->
         @include('home.why')
