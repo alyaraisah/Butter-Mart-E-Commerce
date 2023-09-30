@@ -16,9 +16,22 @@
                            <a href="{{url('product_details', $products->id)}}" class="option1">
                            Detail Produk
                            </a>
-                           <a href="" class="option2">
-                           Beli Sekarang
-                           </a>
+
+                           <form action="{{url('add_cart', $products->id)}}" method="Post" class="product_section form">
+                              @csrf
+                              <div class="row">
+
+                                 <div class="col-md-4">
+                                    <input type="number" name="quantity" value="1" min="1" class="product_section input" >
+                                 </div>
+
+                                 <div class="col-md-4" >
+                                    <input type="submit" value="Tambah Keranjang" class="product_section options option2">
+                                 </div>
+                              
+                              </div>
+                           </form>
+                           
                         </div>
                      </div>
                      <div class="img-box">

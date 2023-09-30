@@ -530,16 +530,40 @@ color: #15304a;
   color: #2E68A2;
 }
 
+.product_section form {
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .product_section .options .option2 {
   background-color: #F3C06B;
   border: 1px solid #F3C06B;
   color: #2E68A2;
+  margin-right: 50px;
+  margin-left: 10px;
+  width: 165px;
+  height: 45px;
+  border-radius: 30px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
+
 
 .product_section .options .option2:hover {
   background-color: transparent;
   color: #2E68A2;
 }
+
+.product_section .input {
+  margin-left: 50px;
+  border-radius: 30px;
+  height: 45px;
+  width: 70px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
+}
+
 
 .product_section .btn-box {
   display: -webkit-box;
