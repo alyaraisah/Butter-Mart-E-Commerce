@@ -18,15 +18,14 @@
    }
 
    .img-box {
-      width: 300px; /* Set a fixed width for the image container */
-      height: 50%; /* Set a fixed height for the image container */
+      width: 300px; 
       overflow: hidden;
       margin-right: 20px;
    }
 
    .img-box img {
-      width: 100%;
-      height: 100%;
+      width: 160px;
+      margin-left: 120px;
       object-fit: cover; /* Maintain aspect ratio and cover the container */
    }
 

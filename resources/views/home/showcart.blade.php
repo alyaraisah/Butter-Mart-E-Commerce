@@ -119,20 +119,26 @@
     }
 
     .mx-auto {
-        position: flex;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #333; /* Choose your background color */
-        color: #fff; /* Choose your text color */
-        text-align: center;
-        padding: 10px 0; /* Adjust padding as needed */
-    }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 100;
+}
 
-    </style>
+.content-footer {
+    padding-bottom: 50px; /* Adjust the value to provide space for the footer */
+    /* Other styles for your content go here */
+}
 
 
-    </head>
+</style>
+
+</head>
 
    <body>
     
@@ -141,49 +147,57 @@
         @include('home.header')
         <!-- end header section -->
 
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            {{session()->get('message')}}
+        </div>
+        @endif
+
             <div class="center">
                 <table class="cart-table">
       
-                        <tr>
-                            <th>Product Title</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Image</th>
-                            <th>Action</th>
-                        </tr>
+                    <tr>
+                        <th>Product Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
                 
+                    <?php $totalprice = 0; ?>
+                    <?php $totalproduct=0;  ?>
                         
                     @if($cart->isEmpty()) 
                         <tr>
-                            <td colspan="3">Your cart is empty.</td>
+                            <td colspan="5">Your cart is empty.</td>
                         </tr>
                     @else 
 
-                        <?php $totalprice=0; ?>
+                    @foreach($cart as $cart)
+                        <tr>
+                            <td>{{$cart->product_title}}</td>
+                            <td>
+                                <form action="{{ route('update_cart', $cart->id) }}" method="POST">
+                                    @csrf
+                                    <div class="quantity-container">
+                                        <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
+                                        <button type="submit" class="btn btn-primary cart">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>Rp{{$cart->price}}</td>
+                            <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
+                            <td>
+                                <a class="btn btn-danger cart" onclick="return confirm('Are you sure to remove this product?')" href="{{url('/remove_cart',$cart->id)}}">Remove</a>
+                            </td>
+                        </tr>
 
-                        @foreach($cart as $cart)
-                            <tr>
-                                <td>{{$cart->product_title}}</td>
-                                
-                                <td>
-                                    <form action="{{ route('update_cart', $cart->id) }}" method="POST">
-                                        @csrf
-                                        <div class="quantity-container">
-                                            <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
-                                            <button type="submit" class="btn btn-primary cart">Update</button>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td>Rp{{$cart->price}}</td>
-                                <td style="width: 50px;"><img src="/product/{{$cart->image}}"></td>
-                                <td>
-                                    <a class="btn btn-danger cart" onclick="return confirm('Are you sure to remove this product?')" href="{{url('/remove_cart',$cart->id)}}">Remove</a>
-                                </td>
-                            </tr>
+                    <?php $totalproduct++; ?>
+                    <?php $totalprice += $cart->price * $cart->quantity; ?> <!-- Update total price here -->
+                    
+                    @endforeach
 
-                            <?php $totalprice += $cart->price * $cart->quantity; ?> <!-- Update total price here -->
-
-                        @endforeach
                         
                     @endif
 
@@ -191,10 +205,15 @@
 
                 <div class="cart-actions">
                     <span>Total price: Rp{{$totalprice}}</span><br>
-                    <button>Checkout</button>
                 </div>
-            </div>
 
+                <div>
+                    <h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>
+                    <a onclick="return confirm('Are you sure?')" href="{{url('cash_order',$totalproduct)}}" class="btn btn-danger">Cash on Delivery</a>
+                    <a href="" class="btn btn-danger">Pay Using Card</a>
+                </div>
+
+            </div>
         </div>
         
       
@@ -202,7 +221,7 @@
         @include('home.footer')
         footer end -->
 
-      <div>
+      <div class="content-footer">
          <p  class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
          </p>
       </div>
