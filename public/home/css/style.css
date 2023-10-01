@@ -248,7 +248,6 @@ a:focus {
           transform: rotate(90deg);
   top: 0;
 }
-
 /*end header section*/
 
 /* slider section */
@@ -540,9 +539,10 @@ color: #15304a;
   background-color: #F3C06B;
   border: 1px solid #F3C06B;
   color: #2E68A2;
-  margin-right: 50px;
-  margin-left: 10px;
-  width: 165px;
+  font-weight: 500;
+  
+  margin-left: 4px;
+  width: 175px;
   height: 45px;
   border-radius: 30px;
   justify-content: center; /* Center horizontally */
@@ -556,7 +556,7 @@ color: #15304a;
 }
 
 .product_section .input {
-  margin-left: 50px;
+  margin-left: 40px;
   border-radius: 30px;
   height: 45px;
   width: 70px;

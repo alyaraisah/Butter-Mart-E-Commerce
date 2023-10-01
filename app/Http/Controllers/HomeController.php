@@ -78,7 +78,37 @@ class HomeController extends Controller
             return redirect('login');
         }
     }
- 
+
+    public function show_cart()
+    {
+        if(Auth::user())
+        {
+            $id=Auth::user()->id;
+            $cart=cart::where('user_id','=',$id)->get();
+            return view('home.showcart', compact('cart'));
+        }
+
+        else 
+        {
+            return redirect('login');
+        }
+    }
+
+    public function remove_cart($id)
+    {
+        $cart=cart::find($id);
+        $cart->delete();
+        return redirect()->back();
+    }
+    
+    public function update_cart(Request $request, $id)
+    {
+        $cart = Cart::find($id);
+        $cart->quantity = $request->input('quantity');
+        $cart->save();
+
+        return redirect()->back();
+    }
 }
 
 

@@ -91,17 +91,26 @@
       
 
       <div class="product-card">
+         
          <div class="img-box">
             <img src="product/{{$product->image}}" alt="{{$product->title}}">
          </div>
+
          <div class="detail-box">
+
             <h5>{{$product->title}}</h5>
+
             @if($product->discount_price != null)
+            
             <h6 class="discount-price">Discount price<br>Rp{{$product->discount_price}}</h6>
             <h6 class="original-price">Rp{{$product->price}}</h6>
+            
             @else
+
             <h6 class="original-price" style="padding-top: 20px;">Rp{{$product->price}}</h6>
+            
             @endif
+
             <h6 class="product-category" style="padding-top: 5px;">Product Category     : {{$product->category}}</h6>
             <h6 class="product-description" style="padding-top: 5px;">Product Description : {{$product->description}}</h6>
             <h6 class="available-quantity" style="padding-top: 5px;">Available Quantity    : {{$product->quantity}}</h6>
@@ -127,10 +136,7 @@
         <!-- footer end -->
 
       <div class="cpy_">
-         <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-         
-            Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-         
+         <p class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
          </p>
       </div>
       

@@ -28,6 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('show_cart')}}">Cart</a>
+                    </li>
                     <form class="form-inline">
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -37,7 +40,7 @@
                     @if (Route::has('login'))
 
                     @auth
-                    <li class="nav-item">
+                    <li style="margin-left:-20px;" class="nav-item">
                         <x-app-layout>
                 
                         </x-app-layout>
@@ -46,10 +49,10 @@
                     @else
 
                     <li class="nav-item">
-                        <a class="btn btn-primary" id="logincss" href="{{ route('login') }}">Login</a>
+                        <a style="background-color:#F3C06B; margin-left:17px; border: 1px solid white; color:#15304a; font-weight:500; transition: background-color 0.3s; " onmouseover="this.style.backgroundColor = ''; this.style.color = '#ffff';" onmouseout="this.style.backgroundColor = '#F3C06B'; this.style.color = '#15304a';" class="btn btn-primary" id="logincss" href="{{ route('login') }}">Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-success" id="logincss" href="{{ route('register') }}">Register</a>
+                        <a style="background-color:#F3C06B; margin-left:3px; border: 1px solid white; color:#15304a; font-weight:500; transition: background-color 0.3s; " onmouseover="this.style.backgroundColor = ''; this.style.color = '#ffff';" onmouseout="this.style.backgroundColor = '#F3C06B'; this.style.color = '#15304a';" class="btn btn-primary" id="logincss" href="{{ route('register') }}">Register</a>
                     </li>
                     @endauth
 
