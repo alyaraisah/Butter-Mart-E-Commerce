@@ -210,7 +210,7 @@
                 <div>
                     <h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>
                     <a onclick="return confirm('Are you sure?')" href="{{url('cash_order',$totalproduct)}}" class="btn btn-danger">Cash on Delivery</a>
-                    <a href="" class="btn btn-danger">Pay Using Card</a>
+                    <!-- <a href="" class="btn btn-danger">Pay Using Card</a> -->
                 </div>
 
             </div>

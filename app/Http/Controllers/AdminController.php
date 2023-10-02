@@ -8,6 +8,8 @@ use App\Models\Category;
 
 use App\Models\Product;
 
+use App\Models\Order;
+
 class AdminController extends Controller
 {
     public function view_category ()
@@ -101,4 +103,33 @@ class AdminController extends Controller
         $product->save();
         return redirect()->back()->with('message', 'Product Updated Succesfully');
     }
+
+ 
+    public function order()
+    {
+        $orders = Order::where('delivery_status', '!=', 'Delivered')->get();
+
+        return view('admin.order', compact('orders'));
+    }
+
+    public function delivered($created_at, $user_id)
+    {
+        // Ambil semua pesanan dengan created_at dan user_id yang sesuai
+        $orders = Order::where('created_at', $created_at)
+                    ->where('user_id', $user_id)
+                    ->where('delivery_status', 'processing')
+                    ->get();
+
+        // Ubah status pengiriman dan status pembayaran untuk setiap pesanan
+        foreach ($orders as $order) {
+            $order->delivery_status = "Delivered";
+            $order->payment_status = 'Paid';
+            $order->save();
+        }
+
+        return redirect()->back();
+    }
+
+
+
 }

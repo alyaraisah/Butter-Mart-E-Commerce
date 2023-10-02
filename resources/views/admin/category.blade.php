@@ -48,7 +48,7 @@
     @include('admin.sidebar')
     @include('admin.header')
     <div class="main-panel">
-          <div class="content-wrapper">
+        <div class="content-wrapper">
 
             @if(session()->has('message'))
             <div class="alert alert-success">
