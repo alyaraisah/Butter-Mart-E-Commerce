@@ -10,6 +10,8 @@ use App\Models\Product;
 
 use App\Models\Order;
 
+use PDF;
+
 class AdminController extends Controller
 {
     public function view_category ()
@@ -107,8 +109,7 @@ class AdminController extends Controller
  
     public function order()
     {
-        $orders = Order::where('delivery_status', '!=', 'Delivered')->get();
-
+        $orders = Order::orderBy('created_at', 'desc')->get();
         return view('admin.order', compact('orders'));
     }
 
@@ -123,13 +124,18 @@ class AdminController extends Controller
         // Ubah status pengiriman dan status pembayaran untuk setiap pesanan
         foreach ($orders as $order) {
             $order->delivery_status = "Delivered";
-            $order->payment_status = 'Paid';
+            $order->payment_status = "Paid";
             $order->save();
         }
 
         return redirect()->back();
     }
 
-
+    public function print_pdf($id)
+    {
+        $order=order::find($id);
+        $pdf=PDF::loadView('admin.pdf', compact('order'));
+        return $pdf->download('order_details.pdf');
+    }
 
 }

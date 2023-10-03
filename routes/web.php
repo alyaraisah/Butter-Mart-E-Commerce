@@ -53,6 +53,8 @@ route::get('/order',[AdminController::class,'order']);
 
 route::get('/delivered/{created_at}/{user_id}', [AdminController::class, 'delivered']);
 
+route::get('/print_pdf/{id}',[AdminController::class,'print_pdf']);
+
 
 route::get('/product_details/{id}',[HomeController::class,'product_details']);
 
