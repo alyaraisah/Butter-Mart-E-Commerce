@@ -21,7 +21,8 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
-   
+        <!-- icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style type="text/css">
 
     .center {
@@ -29,6 +30,7 @@
         width: 60%;
         text-align: center;
         padding: 30px;
+        padding-bottom: 50px;
     }
 
     table {
@@ -72,15 +74,14 @@
     .quantity-container {
         display: flex;
         align-items: center; 
+        justify-content: center;
     }
 
     .quantity-input {
         width: 70px; 
         height: 30px;
         margin-right: 10px; 
-        margin-top: 20px;
-        margin-left: 30px;
-        
+        margin-top: 20px;  
     }
 
     .btn.cart {
@@ -91,7 +92,6 @@
         align-items: center;
         justify-content: center;
         font-size: 15px;
-        margin-right: -15px;
     }
 
     .btn.btn-primary.cart:hover {
@@ -119,22 +119,51 @@
     }
 
     .mx-auto {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    z-index: 100;
-}
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        z-index: 100;
+    }
 
-.content-footer {
-    padding-bottom: 50px; /* Adjust the value to provide space for the footer */
-    /* Other styles for your content go here */
-}
+    .content-footer {
+        padding-bottom: 50px; 
+    }
 
+    .order-button {
+        margin-top: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #DC3545; /* Warna latar belakang */
+        color: #fff; /* Warna teks */
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease; /* Efek transisi ketika hover */
+    }
+
+    .order-button:hover {
+        background-color: #C82333; /* Warna latar belakang saat hover */
+    }
+
+    .view-order-button {
+        margin-top: 25px;
+        margin-left: 10px; /* Jarak antara tombol "Pesan" dan "Lihat Pesanan" */
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #007BFF; /* Warna latar belakang */
+        color: #fff; /* Warna teks */
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease; /* Efek transisi ketika hover */
+    }
+
+    .view-order-button:hover {
+        background-color: #0056b3; /* Warna latar belakang saat hover */
+    }
 
 </style>
 
@@ -158,11 +187,11 @@
                 <table class="cart-table">
       
                     <tr>
-                        <th>Product Title</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Image</th>
-                        <th>Action</th>
+                        <th>Nama Produk</th>
+                        <th>Kuantitas</th>
+                        <th>Harga</th>
+                        <th>Gambar</th>
+                        <th>Hapus</th>
                     </tr>
                 
                     <?php $totalprice = 0; ?>
@@ -170,7 +199,7 @@
                         
                     @if($cart->isEmpty()) 
                         <tr>
-                            <td colspan="5">Your cart is empty.</td>
+                            <td colspan="5">Keranjang Mu Kosong</td>
                         </tr>
                     @else 
 
@@ -182,14 +211,14 @@
                                     @csrf
                                     <div class="quantity-container">
                                         <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
-                                        <button type="submit" class="btn btn-primary cart">Update</button>
+                                        <button type="submit" class="btn btn-primary cart">Perbarui</button>
                                     </div>
                                 </form>
                             </td>
                             <td>Rp{{$cart->price}}</td>
                             <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
                             <td>
-                                <a class="btn btn-danger cart" onclick="return confirm('Are you sure to remove this product?')" href="{{url('/remove_cart',$cart->id)}}">Remove</a>
+                                <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}">Hapus</a>
                             </td>
                         </tr>
 
@@ -204,14 +233,16 @@
                 </table>
 
                 <div class="cart-actions">
-                    <span>Total price: Rp{{$totalprice}}</span><br>
+                    <span>Harga Total: Rp{{$totalprice}}</span><br>
                 </div>
 
-                <div>
-                    <h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>
-                    <a onclick="return confirm('Are you sure?')" href="{{url('cash_order',$totalproduct)}}" class="btn btn-danger">Cash on Delivery</a>
-                    <!-- <a href="" class="btn btn-danger">Pay Using Card</a> -->
+
+                <div class="button-container">
+                    <!--<h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>-->
+                    <a onclick="return confirm('Apakah Kamu Yakin?')" href="{{ url('cash_order', $totalproduct) }}" class="btn btn-danger order-button">Pesan</a>
+                    <a href="{{url('show_order')}}" class="btn btn-primary view-order-button">Lihat Pesanan</a>
                 </div>
+
 
             </div>
         </div>
@@ -225,6 +256,17 @@
          <p  class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
          </p>
       </div>
+
+      <script>
+         document.addEventListener("DOMContentLoaded", function(event) { 
+               var scrollpos = localStorage.getItem('scrollpos');
+               if (scrollpos) window.scrollTo(0, scrollpos);
+         });
+
+         window.onbeforeunload = function(e) {
+               localStorage.setItem('scrollpos', window.scrollY);
+         };
+    </script>
       
       <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>

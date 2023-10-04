@@ -50,6 +50,7 @@
         padding: 9px;
     }
 
+
   </style>
 
   </head>
@@ -67,9 +68,10 @@
             
             <h1 class="title_deg">All Orders</h1>
 
-            <div style="margin: auto; padding-top:12px; ">
-                <form action="">
-                    <input type="text" name="search" id="" placeholder="Cari Produk Apa?">
+            <div style="margin: auto; padding-top:25px; text-align:center;">
+                <form action="{{url('search')}}" method="get">
+                    @csrf
+                    <input type="text" name="search" id="" placeholder="Cari Apa?" style="color: black;">
                     <input type="submit" value="Search" class="btn btn-outline-primary" id="">
 
                 </form>
@@ -150,7 +152,7 @@
                     <tr class="th_deg">
                         <td colspan="11" style="text-align: center; padding:10px;">
                             @if(count($orders) === 0)
-                                Belum ada produk
+                                Belum ada order
                             @endif
                         </td>
                     </tr>

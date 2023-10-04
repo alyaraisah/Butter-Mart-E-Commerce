@@ -4,6 +4,16 @@
                <h2>
                   Our <span>products</span>
                </h2>
+
+               <br><br>
+
+               <div>
+                  <form action="{{url('product_search')}}" method="GET" style="display: inline-block; margin-right: 10px;">
+                     <input style="width: 300px;"  type="text" name="search"  placeholder="Cari Produk Apa?">
+                     <input type="submit" value="search" name="" id="" style="display: inline-block;">
+                  </form>
+               </div>
+
             </div>
             <div class="row">
 

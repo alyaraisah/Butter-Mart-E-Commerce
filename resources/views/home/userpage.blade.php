@@ -20,6 +20,8 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+      <!-- icon -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
    </head>
 
    <body>
@@ -60,6 +62,17 @@
          <p class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
          </p>
       </div>
+
+      <script>
+         document.addEventListener("DOMContentLoaded", function(event) { 
+               var scrollpos = localStorage.getItem('scrollpos');
+               if (scrollpos) window.scrollTo(0, scrollpos);
+         });
+
+         window.onbeforeunload = function(e) {
+               localStorage.setItem('scrollpos', window.scrollY);
+         };
+    </script>
       
       <!-- jQery -->
       <script src="home/js/jquery-3.4.1.min.js"></script>

@@ -19,7 +19,7 @@ use App\Http\Controllers\AdminController;
 
 route::get('/',[HomeController::class,'index']);
 
-Route::middleware([
+route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
@@ -55,6 +55,9 @@ route::get('/delivered/{created_at}/{user_id}', [AdminController::class, 'delive
 
 route::get('/print_pdf/{id}',[AdminController::class,'print_pdf']);
 
+route::get('/search',[AdminController::class,'searchdata']);
+
+
 
 route::get('/product_details/{id}',[HomeController::class,'product_details']);
 
@@ -69,4 +72,10 @@ route::post('/update_cart/{id}', [HomeController::class, 'update_cart'])->name('
 route::get('/cash_order', [HomeController::class, 'cash_order']);
 
 route::get('/cash_order/{totalproduct}',[HomeController::class,'cash_order']);
+
+route::get('/show_order', [HomeController::class, 'show_order']);
+
+route::get('/cancel_order/{id}',[HomeController::class,'cancel_order']);
+
+route::get('/product_search', [HomeController::class, 'product_search']);
 

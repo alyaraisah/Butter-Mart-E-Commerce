@@ -78,7 +78,7 @@
                 <th class="th_deg">Quantity</th>
                 <th class="th_deg">Category</th>
                 <th class="th_deg">Price</th>
-                <th class="th_deg">Discount Price</th>
+                <!--<th class="th_deg">Discount Price</th>-->
                 <th class="th_deg">Product Image</th>
                 <th class="th_deg">Delete</th>
                 <th class="th_deg">Edit</th>
@@ -97,9 +97,11 @@
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->category}}</td>
                 <td>{{$product->price}}</td>
-                <td>{{$product->discount_price}}</td>
-                <td>
-                    <img class="img_size" src="/product/{{$product->image}}">
+                <!-- <td>{{$product->discount_price}}</td> -->
+                <td style="text-align: center; vertical-align: middle;">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <img style="width: 70px;" class="img_size" src="/product/{{$product->image}}">
+                    </div>
                 </td>
                 <td>
                     <a class="btn btn-danger" onclick="return confirm('Are You Sure to Delete This')" href="{{url('delete_product', $product->id)}}">Delete</a>

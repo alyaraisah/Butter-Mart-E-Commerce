@@ -7,30 +7,37 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
+
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{url('/redirect')}}">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{url('/redirect')}}" style="margin-right: -15px;">Beranda<span class="sr-only">(current)</span></a>
                     </li>
+                    
                     <!--
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pages <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="about.html">About</a></li>
                             <li><a href="testimonial.html">Testimonial</a></li>
-                        </ul>-->
-                    </li>
+                        </ul>
+                    </li>-->
+
                     <li class="nav-item">
-                        <a class="nav-link" href="product.html">Products</a>
+                        <a class="nav-link" href="product.html" style="margin-right: -15px;">Produk Kami</a>
                     </li>
+
                     <!--
                     <li class="nav-item">
                         <a class="nav-link" href="blog_list.html">Blog</a>
                     </li> -->
+
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="contact.html" style="margin-right: -15px;">Kontak</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('show_cart')}}">Cart</a>
+                        <a class="nav-link" href="{{ url('show_cart') }}" style="margin-right: 0px;">Keranjang <i class="fas fa-shopping-cart"></i></a>
                     </li>
+
                     <form class="form-inline">
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -42,7 +49,7 @@
                     @auth
                     <li style="margin-left:-20px;" class="nav-item">
                         <x-app-layout>
-                
+
                         </x-app-layout>
                     </li>
 

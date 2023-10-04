@@ -28,7 +28,20 @@ class HomeController extends Controller
         $usertype = Auth::user()->usertype;
 
         if ($usertype == "1") {
-            return view('admin.home');
+            $total_product=product::all()->count();
+            $total_order=order::all()->count();
+            $total_product=product::all()->count();
+            $total_user=user::all()->count();
+            $order=order::all();
+            $total_revenue=0;
+            foreach($order as $order){
+                $total_revenue=$total_revenue + $order->price;
+            }
+
+            $total_delivered=order::where('delivery_status','=','delivered')->get()->count();
+            $total_processing=order::where('delivery_status','=','processing')->get()->count();
+
+            return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_delivered'));
         } 
         else {
             $product=Product::paginate(9);
@@ -151,6 +164,34 @@ class HomeController extends Controller
 
             return redirect()->back()->with('message', 'We have received your order. We will connect with you soon...');
         }
+    }
+
+    public function show_order () { 
+        if(Auth::id()) {
+            $user = Auth::user();
+            $userid = $user->id;
+    
+            $order = order::where('user_id', $userid)->orderBy('created_at', 'desc')->get();
+            return view('home.order', compact('order'));
+        } else {
+            return redirect('login');
+        }
+    }  
+    
+    public function cancel_order($id)
+    {
+        $order=order::find($id);
+        $order->delivery_status='Kamu membatalkan pesanan ini';
+
+        $order->save();
+        return redirect()->back();
+    }
+
+    public function product_search(Request $request)
+    {
+        $search_text = $request->search;
+        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(9);
+        return view('home.userpage', compact('product'));
     }
 
 }
