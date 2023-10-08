@@ -161,7 +161,7 @@ a:focus {
     border-radius: 5px;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link svg {
@@ -584,6 +584,34 @@ color: #15304a;
   border-radius: 0;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+font-size: 18px;
+}
+
+.category-buttons {
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: center; 
+}
+
+.category-button {
+  margin: 0 5px;
+  position: relative;
+  transition: box-shadow 0.3s ease; 
+  width: 177px;
+  height: 60px; 
+  border: 1px solid #706E6B;
+  border-radius: 5px;
+  color: #15304A;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-button:hover {
+  color: white;
+  background-color: #2E68A2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 .product_section .btn-box a:hover {
@@ -889,6 +917,7 @@ color: #15304a;
 .footer_section .footer-info p a {
   color: inherit;
 }
+
 /*# sourceMappingURL=style.css.map */
 
 .heading_container.heading_center h3 {
@@ -1026,7 +1055,7 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
 
 form input {
     background: #fff;
-    border: solid #ccc 1px;
+    border: solid #706E6B 1px;
     padding: 15px 15px;
     width: 100%;
     font-size: 14px;
@@ -1049,16 +1078,17 @@ form textarea {
 
 form input[type="submit"] {
     border: none;
-    padding: 15px 45px;
+    padding: 12px 30px;
     width: auto;
     font-size: 16px;
     text-transform: capitalize;
     line-height: normal;
     margin: 0 auto;
     display: flex;
-    background: #333;
+    background: #2E68A2;
     color: #fff;
     font-weight: 600;
+    position: relative;
     transition: ease all 0.1s;
 }
 

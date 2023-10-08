@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -78,4 +80,18 @@ route::get('/show_order', [HomeController::class, 'show_order']);
 route::get('/cancel_order/{id}',[HomeController::class,'cancel_order']);
 
 route::get('/product_search', [HomeController::class, 'product_search']);
+
+route::get('/products', [HomeController::class, 'product']);
+
+route::get('/category_bahankue', [HomeController::class, 'category_bahankue']);
+
+route::get('/category_bumbudapur', [HomeController::class, 'category_bumbudapur']);
+
+route::get('/category_peralatandapur', [HomeController::class, 'category_peralatandapur']);
+
+route::get('/category_plastik', [HomeController::class, 'category_plastik']);
+
+route::get('/category_aksesoris', [HomeController::class, 'category_aksesoris']);
+
+route::get('/category_search', [HomeController::class, 'category_search']);
 

@@ -2,19 +2,35 @@
          <div class="container" style="position: relative;">
             <div class="heading_container heading_center">
                <h2>
-                  Our <span>products</span>
+                  Produk <span>Kami</span>
                </h2>
 
                <br><br>
 
-               <div>
+               <div style="margin-bottom: 50px;">
                   <form action="{{url('product_search')}}" method="GET" style="display: inline-block; margin-right: 10px;">
-                     <input style="width: 300px;"  type="text" name="search"  placeholder="Cari Produk Apa?">
-                     <input type="submit" value="search" name="" id="" style="display: inline-block;">
+                     <input style="width: 280px; height:44px;" type="text" name="search" placeholder="Cari Produk Apa?">
+                     <input type="submit" value="Cari" name="" id="" style="display: inline-block; transition: box-shadow 0.3s;" onmouseover="this.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';" onmouseout="this.style.boxShadow = 'none';">
                   </form>
                </div>
 
+               <div class="category-buttons">
+                  <!--<a href="{{ url('products') }}" class="category-button">Semua</a>-->
+                  <a href="{{ url('category_bahankue') }}" class="category-button">Bahan Kue</a>
+                  <a href="{{ url('category_bumbudapur') }}" class="category-button">Bumbu Dapur</a>
+                  <a href="{{ url('category_peralatandapur') }}" class="category-button">Peralatan Dapur</a>
+                  <a href="{{ url('category_plastik') }}" class="category-button">Plastik</a>
+                  <a href="{{ url('category_aksesoris') }}" class="category-button">Aksesoris</a>
+               </div>
             </div>
+
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                {{session()->get('message')}}
+            </div>
+            @endif
+            
             <div class="row">
 
                @foreach($product as $products)
@@ -36,7 +52,7 @@
                                  </div>
 
                                  <div class="col-md-4" >
-                                    <input type="submit" value="Tambah Keranjang" class="product_section options option2">
+                                    <input style="" type="submit" value="Tambah Keranjang" class="product_section options option2">
                                  </div>
                               
                               </div>
@@ -87,10 +103,11 @@
                </span>
 
             </div>
-            <div class="btn-box" style="margin-top:100px; margin-bottom:0px; ">
+            <div class="btn-box" style="margin-top:100px; margin-bottom:-50px; ">
                <a href="">
-               View All products
+               Lihat Semua
                </a>
             </div> 
          </div>
 </section>
+

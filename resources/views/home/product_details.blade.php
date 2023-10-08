@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html>
+
+   <head>
+      <!-- Basic -->
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <!-- Mobile Metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <!-- Site Metas -->
+      <meta name="keywords" content="" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <link rel="shortcut icon" href="/images/favicon.png" type="">
+      <title>Butter Mart</title>
+      <!-- bootstrap core css -->
+      <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
+      <!-- font awesome style -->
+      <link href="{{asset('home/css/font-awesome.min.css')}}" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
+      <!-- responsive style -->
+      <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
+      <!-- icon -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   </head>
+
    <style>
    .product-card {
       display: flex;
@@ -9,7 +34,7 @@
       margin-right: 200px;
       margin-top: 25px;
       margin-bottom: 40px;
-      padding: 20px;
+      padding: 50px;
       border: 1px solid #ccc;
       border-radius: 5px;
    
@@ -20,7 +45,7 @@
    .img-box {
       width: 300px; 
       overflow: hidden;
-      margin-right: 20px;
+      margin-right: 30px;
    }
 
    .img-box img {
@@ -32,8 +57,6 @@
    .detail-box {
       flex: 1; /* Take remaining available space */
    }
-
- 
 
    .btn.btn-primary.custom-button {
       background-color: white; 
@@ -57,30 +80,19 @@
       color: white; 
    }
 
-   </style>
+   .mx-auto {
+      position:absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      z-index: 100;
+   }
 
-   <head>
-      <!-- Basic -->
-      <base href="/public">
-      <meta charset="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <!-- Mobile Metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      <!-- Site Metas -->
-      <meta name="keywords" content="" />
-      <meta name="description" content="" />
-      <meta name="author" content="" />
-      <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Butter Mart</title>
-      <!-- bootstrap core css -->
-      <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
-      <!-- font awesome style -->
-      <link href="home/css/font-awesome.min.css" rel="stylesheet" />
-      <!-- Custom styles for this template -->
-      <link href="home/css/style.css" rel="stylesheet" />
-      <!-- responsive style -->
-      <link href="home/css/responsive.css" rel="stylesheet" />
-   </head>
+   </style>
 
    <body>
       <div class="hero_area">
@@ -92,7 +104,7 @@
       <div class="product-card">
          
          <div class="img-box">
-            <img src="product/{{$product->image}}" alt="{{$product->title}}">
+            <img src="/product/{{$product->image}}" alt="{{$product->title}}">
          </div>
 
          <div class="detail-box">
@@ -119,7 +131,7 @@
                @csrf
                <div class="row">
                   <div class="col-md-4">
-                     <input type="number" name="quantity" value="1" min="1" style="margin-top:22px; width:90px; height: 30px; border-radius:5px; font-size: 15px; align-items:center;">
+                     <input type="number" name="quantity" value="1" min="1" style="margin-top:22px; width:80px; height: 30px; border-radius:5px; font-size: 15px; align-items:center;">
                   </div>
 
                   <div class="col-md-4">
@@ -130,11 +142,8 @@
          </div>
       </div>
 
-        <!-- footer start -->
-        @include('home.footer')
-        <!-- footer end -->
 
-      <div class="cpy_">
+      <div>
          <p class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
          </p>
       </div>

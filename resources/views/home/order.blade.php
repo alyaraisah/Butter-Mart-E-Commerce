@@ -10,16 +10,16 @@
       <meta name="keywords" content="" />
       <meta name="description" content="" />
       <meta name="author" content="" />
-      <link rel="shortcut icon" href="images/favicon.png" type="">
+      <link rel="shortcut icon" href="/images/favicon.png" type="">
       <title>Butter Mart</title>
       <!-- bootstrap core css -->
-      <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
       <!-- font awesome style -->
-      <link href="home/css/font-awesome.min.css" rel="stylesheet" />
+      <link href="{{asset('home/css/font-awesome.min.css')}}" rel="stylesheet" />
       <!-- Custom styles for this template -->
-      <link href="home/css/style.css" rel="stylesheet" />
+      <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
       <!-- responsive style -->
-      <link href="home/css/responsive.css" rel="stylesheet" />
+      <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
       <!-- icon -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
    </head>
@@ -29,6 +29,7 @@
         margin: auto;
         width: 65%;
         text-align: center;
+        padding: 30px;
         padding-bottom: 50px;
     }
 
@@ -59,22 +60,21 @@
     }
 
     .mx-auto {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         background-color: #333;
         color: #fff;
         text-align: center;
-        padding: 10px 0;
+        padding: 15px 0;
         z-index: 100;
-        margin-top: 50px; 
     }
 
    </style>
 
    <body>
-      <div class="hero_area">
+      <div>
         <!-- header section strats -->
         @include('home.header')
         <!-- end header section -->

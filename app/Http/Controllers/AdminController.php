@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Category;
 
 use App\Models\Product;
@@ -16,9 +18,13 @@ class AdminController extends Controller
 {
     public function view_category ()
     {
-        $data=category::all();
-
-        return view('admin.category', compact('data'));
+        if(Auth::id()){
+            $data=category::all();
+            return view('admin.category', compact('data'));
+        }
+        else{
+            return redirect('login');
+        }
     }
 
     public function add_category (Request $request)
@@ -86,24 +92,29 @@ class AdminController extends Controller
 
     public function update_product_confirm (Request $request,$id) 
     {
-        $product=product::find($id); 
-        $product->title=$request->title;
-        $product->description=$request->description;
-        $product->price=$request->price;
-        $product->discount_price=$request->dis_price;
-        $product->category=$request->category;
-        $product->quantity=$request->quantity;
-        
-        $image=$request->image;
-        if($image)
-        {
-            $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('product',$imagename);
-            $product->image=$imagename;
+        if(Auth::id()){
+            $product=product::find($id); 
+            $product->title=$request->title;
+            $product->description=$request->description;
+            $product->price=$request->price;
+            $product->discount_price=$request->dis_price;
+            $product->category=$request->category;
+            $product->quantity=$request->quantity;
+            
+            $image=$request->image;
+            if($image)
+            {
+                $imagename=time().'.'.$image->getClientOriginalExtension();
+                $request->image->move('product',$imagename);
+                $product->image=$imagename;
+            }
+            
+            $product->save();
+            return redirect()->back()->with('message', 'Product Updated Succesfully');
+        } else{
+            return redirect('login');
         }
         
-        $product->save();
-        return redirect()->back()->with('message', 'Product Updated Succesfully');
     }
 
  
