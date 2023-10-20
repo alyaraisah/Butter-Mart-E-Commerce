@@ -20,8 +20,8 @@
                                     <br>Kami menyediakan bahan kue, bumbu dapur, peralatan oven, plastik, dan masih banyak lagi! <br><br>
                                  </p>
                                  <div class="btn-box">
-                                    <a href="" class="btn1">
-                                    Shop Now
+                                    <a href="{{ url('products') }}" class="btn1">
+                                    Lihat Produk
                                     </a>
                                  </div>
                               </div>
@@ -36,17 +36,17 @@
                               <div class="detail-box">
                                  <h1>
                                     <span>
-                                    Sale 20% Off
+                                    Pengiriman
                                     </span>
                                     <br>
-                                    On Everything
+                                    Gratis & Cepat
                                  </h1>
                                  <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                                 <br>Gak Perlu khawatir! kami bisa antar belanjaanmu ke rumah <br>tanpa biaya ongkos kirim! <br><br>
                                  </p>
                                  <div class="btn-box">
-                                    <a href="" class="btn1">
-                                    Shop Now
+                                    <a href="{{ url('products') }}" class="btn1">
+                                    Lihat Produk
                                     </a>
                                  </div>
                               </div>
@@ -61,17 +61,17 @@
                               <div class="detail-box">
                                  <h1>
                                     <span>
-                                    We Serve
+                                    Pembayaran 
                                     </span>
                                     <br>
-                                    Free Delivery
+                                    Mudah 
                                  </h1>
                                  <p>
-                                    Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                                 <br>Belanja di website bayar di WhatsApp! <br>Bisa transfer dari mana saja hanya dengan scan QRIS!<br><br>
                                  </p>
                                  <div class="btn-box">
-                                    <a href="" class="btn1">
-                                    Shop Now
+                                    <a href="{{ url('products') }}" class="btn1">
+                                    Lihat Produk
                                     </a>
                                  </div>
                               </div>

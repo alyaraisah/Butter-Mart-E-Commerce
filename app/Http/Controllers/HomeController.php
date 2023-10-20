@@ -14,6 +14,8 @@ use App\Models\Cart;
 
 use App\Models\Order;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class HomeController extends Controller
 {
     public function index()
@@ -22,7 +24,7 @@ class HomeController extends Controller
         return view('home.userpage', compact('product'));
     }
 
-    public function redirect()
+    public function redirectgakjadi()
     {
     if (Auth::check()) {
         $usertype = Auth::user()->usertype;
@@ -51,6 +53,36 @@ class HomeController extends Controller
         return redirect()->route('login'); 
     }
     }   
+
+    public function redirect()
+    {
+        // You can remove the Auth::check() condition
+        $usertype = Auth::check() ? Auth::user()->usertype : null;
+    
+        if ($usertype == "1") {
+            if ($usertype == "1") {
+                $total_product=product::all()->count();
+                $total_order=order::all()->count();
+                $total_product=product::all()->count();
+                $total_user=user::all()->count();
+                $order=order::all();
+                $total_revenue=0;
+                foreach($order as $order){
+                    $total_revenue=$total_revenue + $order->price;
+                }
+    
+                $total_delivered=order::where('delivery_status','=','delivered')->get()->count();
+                $total_processing=order::where('delivery_status','=','processing')->get()->count();
+    
+                return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_delivered'));
+            } 
+        } 
+        else {
+            $product = Product::paginate(9);
+            return view('home.userpage', compact('product'));
+        }
+    }
+    
 
     public function product_details($id)
     {
@@ -131,10 +163,41 @@ class HomeController extends Controller
         return redirect()->back();
     }   
 
+    public function update_cart(Request $request, $id)
+    {
+        if (Auth::id()) {
+            $user = Auth::user();
+            $cart = Cart::find($id);
+    
+            if (!$cart) {
+                return redirect()->back();
+            }
+    
+            $cart->quantity = $request->input('quantity');
+            $cart->save();
+    
+            // Fetch the corresponding product based on the product_title
+            $product = Product::where('title', $cart->product_title)->first();
+    
+            if (!$product) {
+                return redirect()->back();
+            }
+    
+            if ($product->discount_price != null) {
+                $cart->price = $product->discount_price * $cart->quantity;
+            } else {
+                $cart->price = $product->price * $cart->quantity;
+            }
+            $cart->save();
+    
+            return redirect()->back();
+        } else {
+            return redirect('login');
+        }
+    }    
     
 
-
-    public function cash_order($totalproduct)
+    public function cash($totalproduct)
     {
         if ($totalproduct == 0) {
             return redirect()->back()->with('message', 'Please add some product');
@@ -171,9 +234,55 @@ class HomeController extends Controller
             $cart->delete();
         }
 
+        $this->pesan();
+
             return redirect()->back()->with('message', 'We have received your order. We will connect with you soon...');
         }
     }
+
+    public function cash_order($totalproduct)
+    {
+        if ($totalproduct == 0) {
+            return redirect()->back()->with('message', 'Please add some products');
+        } 
+    
+        $user = Auth::user();
+        $userid = $user->id;
+        $carts = Cart::where('user_id', '=', $userid)->get();
+        
+        $message = '';
+        $total = 0;
+        $numbering = 1;
+
+        $message .= 'Berikut ini produk yang kamu beli:';
+        $message .= "\n";
+    
+        foreach ($carts as $cart) {
+            $product_title = $cart->product_title;
+            $quantity = $cart->quantity;
+            
+            // Retrieve the product price from the products table
+            $product = Product::where('title', $product_title)->first();
+            $price = $product->price;
+    
+            $subtotal = $price * $quantity;
+            $total += $subtotal;
+    
+            $message .= $numbering . '. ' . $product_title . ', ' . $quantity . ' x ' . $price;
+            $message .= "\n"; // This adds a newline character
+    
+            $numbering++;
+        }
+    
+        $message .= "\n";
+        $message .= 'Total Pembayaranmu: IDR ' . number_format($total, 0, ',', ',');
+        $message .= "\n";
+        $message .= 'Silahkan Kirim Pesan Ini!';
+        
+        $adminNumber = env('WHATSAPP_ADMIN_NUMBER');
+        return redirect('https://wa.me/' . $adminNumber . '?text=' . urlencode($message));
+    }    
+
 
     public function show_order () { 
         if(Auth::id()) {
@@ -209,11 +318,24 @@ class HomeController extends Controller
         return view('home.all_product', compact('product'));
     }
 
+    public function product1()
+    {
+        $product=Product::paginate(9);
+        return view('home.userpage', compact('product'));
+    }
+
     public function category_bahankue()
     {
         $category = 'bahan kue'; // Set the category you want to display
         $product = Product::where('category', $category)->paginate(12);
         return view('home.all_product', compact('product'));
+    }
+
+    public function category_bahankue1()
+    {
+        $category = 'bahan kue'; // Set the category you want to display
+        $product = Product::where('category', $category)->paginate(9);
+        return view('home.userpage', compact('product'));
     }
 
     public function category_bumbudapur()
@@ -223,11 +345,25 @@ class HomeController extends Controller
         return view('home.all_product', compact('product'));
     }
 
+    public function category_bumbudapur1()
+    {
+        $category = 'bumbu dapur'; // Set the category you want to display
+        $product = Product::where('category', $category)->paginate(9);
+        return view('home.userpage', compact('product'));
+    }
+
     public function category_peralatandapur()
     {
         $category = 'peralatan dapur'; // Set the category you want to display
         $product = Product::where('category', $category)->paginate(12);
         return view('home.all_product', compact('product'));
+    }
+
+    public function category_peralatandapur1()
+    {
+        $category = 'peralatan dapur'; // Set the category you want to display
+        $product = Product::where('category', $category)->paginate(9);
+        return view('home.userpage', compact('product'));
     }
 
     public function category_plastik()
@@ -237,11 +373,25 @@ class HomeController extends Controller
         return view('home.all_product', compact('product'));
     }
 
+    public function category_plastik1()
+    {
+        $category = 'plastik'; // Set the category you want to display
+        $product = Product::where('category', $category)->paginate(9);
+        return view('home.userpage', compact('product'));
+    }
+
     public function category_aksesoris()
     {
         $category = 'aksesoris'; // Set the category you want to display
         $product = Product::where('category', $category)->paginate(12);
         return view('home.all_product', compact('product'));
+    }
+
+    public function category_aksesoris1()
+    {
+        $category = 'aksesoris'; // Set the category you want to display
+        $product = Product::where('category', $category)->paginate(9);
+        return view('home.userpage', compact('product'));
     }
 
     public function category_search(Request $request)
@@ -250,8 +400,6 @@ class HomeController extends Controller
         $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(12);
         return view('home.all_product', compact('product'));
     }
-
-
 
 
 }

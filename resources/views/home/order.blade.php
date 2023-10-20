@@ -60,7 +60,7 @@
     }
 
     .mx-auto {
-        position: absolute;
+        position:fixed;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -88,7 +88,7 @@
                     <th>Status Bayar</th>
                     <th>Status Kirim</th>
                     <th>Gambar</th>
-                    <th>Batalkan Pesanan</th>
+                    <!--<th>Batalkan Pesanan</th>-->
                 </tr>
 
                 @if($order->isEmpty()) 
@@ -108,7 +108,7 @@
                         <img style="width: 55px;" src="product/{{$order->image}}" alt="">
                     </td>
 
-                    <td>
+                    <!--<td>
                         @if($order->delivery_status=='processing')
                         <a onclick="return confirm ('Yakin membatalkan pesanan ini?')" class="btn btn-danger" href="{{ url('cancel_order', $order->id) }}">Batalkan</a>
             
@@ -116,7 +116,7 @@
                         <p>-</p>
 
                         @endif
-                    </td>
+                    </td>-->
 
                 </tr>
                 @endforeach

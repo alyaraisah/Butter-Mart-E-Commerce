@@ -66,7 +66,7 @@
     <div class="main-panel">
         <div class="content-wrapper">
             
-            <h1 class="title_deg">All Orders</h1>
+            <h1 class="title_deg">All Carts</h1>
 
             <div style="margin: auto; padding-top:25px; text-align:center;">
                 <form action="{{url('search')}}" method="get">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="table-container">
-            @if(count($orders) > 0)
+            @if($carts !== null && count($carts) > 0)
                 <table class="table_deg">
 
                 <tr>
@@ -89,40 +89,27 @@
                     <th>Nama Produk</th>
                     <th>Kuantitas</th>
                     <th>Harga</th>
-                    <th>Status Bayar</th>
-                    <th>Status Kirim</th>
                     <th>Gambar</th>
-                    <th>Delivered</th>
-                    <th>Print PDF</th>
+                    <th>Accepted</th>
                 </tr>
 
-                @foreach($orders as $order)
+                @foreach($carts as $cart)
 
                 <tr class="th_deg">
-                    <td>{{$order->name}}</td>
-                    <td>{{$order->email}}</td>
-                    <td>{{$order->address}}</td>
-                    <td>{{$order->phone}}</td>
-                    <td>{{$order->product_title}}</td>
-                    <td>{{$order->quantity}}</td>
-                    <td>{{$order->price}}</td>
-                    <td>{{$order->payment_status}}</td>
-                    <td>{{$order->delivery_status}}</td>
+                    <td>{{$cart->name}}</td>
+                    <td>{{$cart->email}}</td>
+                    <td>{{$cart->address}}</td>
+                    <td>{{$cart->phone}}</td>
+                    <td>{{$cart->product_title}}</td>
+                    <td>{{$cart->quantity}}</td>
+                    <td>{{$cart->price}}</td>
                     <td style="text-align: center; vertical-align: middle;">
-                        <img style="width: 50px; display: block; margin: 0 auto;" src="/product/{{$order->image}}" alt="">
+                        <img style="width: 50px; display: block; margin: 0 auto;" src="/product/{{$cart->image}}" alt="">
+                    </td>
+                    <td>
+                        <a href="{{ route('cart.accept', $cart->id) }}" class="btn btn-primary accepted">Accepted</a>
                     </td>
 
-                    <td>
-                        @if($order->delivery_status=='processing')
-                        <a href="{{ url('delivered/' . $order->created_at . '/' . $order->user_id) }}" onclick="return confirm('Are You Sure to deliver these products?');" class="btn btn-primary delivered">Delivered</a>
-                        @else
-                        <p style="color:#F3C06B">Delivered</p>
-                        @endif
-                    </td>
-
-                    <td>
-                        <a href="{{ url('print_pdf', $order->id) }}" class="btn btn-secondary pdf">Print PDF</a>
-                    </td>
 
                 </tr>
 
@@ -141,15 +128,13 @@
                         <th>Product Title</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                        <th>Payment Status</th>
-                        <th>Delivery Status</th>
                         <th>Image</th>
                         <th>Deliverd</th>
                     </tr>
 
                     <tr class="th_deg">
                         <td colspan="11" style="text-align: center; padding:10px;">
-                            @if(count($orders) === 0)
+                            @if(count($carts) === 0)
                                 Belum ada order
                             @endif
                         </td>
@@ -158,9 +143,6 @@
 
             @endif
             </div>
-
-            
-
         </div>
     </div>
     <!-- Plugin js for this page -->

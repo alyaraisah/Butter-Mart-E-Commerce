@@ -15,12 +15,12 @@
                </div>
 
                <div class="category-buttons">
-                  <!--<a href="{{ url('products') }}" class="category-button">Semua</a>-->
-                  <a href="{{ url('category_bahankue') }}" class="category-button">Bahan Kue</a>
-                  <a href="{{ url('category_bumbudapur') }}" class="category-button">Bumbu Dapur</a>
-                  <a href="{{ url('category_peralatandapur') }}" class="category-button">Peralatan Dapur</a>
-                  <a href="{{ url('category_plastik') }}" class="category-button">Plastik</a>
-                  <a href="{{ url('category_aksesoris') }}" class="category-button">Aksesoris</a>
+                  <a href="{{ url('products1') }}" class="category-button">Semua</a>
+                  <a href="{{ url('category_bahankue1') }}" class="category-button">Bahan Kue</a>
+                  <a href="{{ url('category_bumbudapur1') }}" class="category-button">Bumbu Dapur</a>
+                  <a href="{{ url('category_peralatandapur1') }}" class="category-button">Peralatan Dapur</a>
+                  <a href="{{ url('category_plastik1') }}" class="category-button">Plastik</a>
+                  <a href="{{ url('category_aksesoris1') }}" class="category-button">Aksesoris</a>
                </div>
             </div>
 
@@ -110,4 +110,6 @@
             </div> 
          </div>
 </section>
+
+
 

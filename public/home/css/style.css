@@ -633,7 +633,7 @@ font-size: 18px;
 }
 
 .arrival_section .box {
-  padding: 120px 45px;
+  padding: 100px 45px;
   position: relative;
   background-color: #2E68A2;
 }
@@ -648,8 +648,10 @@ font-size: 18px;
 }
 
 .arrival_section .arrival_bg_box img {
-    width: 50%;
-    height: 100%;
+    margin-top: 10px;
+    margin-left: 70px;
+    width: 500px;
+
     -o-object-fit: cover;
     object-fit: cover;
     -o-object-position: top left;
@@ -1124,3 +1126,59 @@ http://kute-themes.com/html/boutique/html/index.html
 https://template.hasthemes.com/noraure/noraure/index.html
 https://preview.hasthemes.com/xoss-preview/xoss/index.html
 
+/* Existing header styles go here */
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  .header_section .container {
+      padding: 0;
+  }
+
+  .custom_nav-container .navbar-toggler {
+      display: block;
+  }
+
+  .custom_nav-container .navbar-nav {
+      display: none;
+  }
+
+  .custom_nav-container .navbar-nav.show {
+      display: block;
+      background: #fff;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      padding: 15px 0;
+      border: 2px solid #000;
+      border-radius: 5px;
+      z-index: 10;
+  }
+
+  .custom_nav-container .nav-item {
+      display: block;
+      margin: 10px 0;
+  }
+
+  .custom_nav-container .nav-link {
+      padding: 0;
+      color: #15304a;
+      font-size: 16px;
+      text-align: left;
+      transition: all 0.3s;
+  }
+
+  .custom_nav-container .nav_search-btn {
+      display: block;
+      width: 35px;
+      height: 35px;
+  }
+
+  .nav_search-btn i {
+      font-size: 20px;
+  }
+
+  .nav_search-btn:hover i {
+      color: #2E68A2;
+  }
+}

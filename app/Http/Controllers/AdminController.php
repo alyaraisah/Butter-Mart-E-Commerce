@@ -12,6 +12,10 @@ use App\Models\Product;
 
 use App\Models\Order;
 
+use App\Models\User; 
+
+use App\Models\Cart;
+
 use PDF;
 
 class AdminController extends Controller
@@ -116,13 +120,55 @@ class AdminController extends Controller
         }
         
     }
-
  
     public function order()
     {
         $orders = Order::orderBy('created_at', 'desc')->get();
         return view('admin.order', compact('orders'));
     }
+
+    public function cart()
+    {
+        $carts = Cart::all(); // Retrieve all cart items from the "carts" table
+        return view('admin.cart', compact('carts'));
+    }
+    
+    public function acceptOrder($orderId)
+    {
+        $cartItem = Cart::find($orderId);
+        
+        if (!$cartItem) {
+            return redirect()->route('cart')->with('error', 'Item not found in the cart.');
+        }
+        
+        // Find all cart items with the same user_id
+        $cartItemsToMove = Cart::where('user_id', $cartItem->user_id)->get();
+        
+        foreach ($cartItemsToMove as $item) {
+            // Create a new order record for each cart item
+            $newOrder = new Order;
+            $newOrder->user_id = $item->user_id;
+            $newOrder->name = $item->name;
+            $newOrder->email = $item->email;
+            $newOrder->address = $item->address;
+            $newOrder->phone = $item->phone;
+            $newOrder->product_title = $item->product_title;
+            $newOrder->quantity = $item->quantity;
+            $newOrder->price = $item->price;
+            $newOrder->payment_status = 'cash on delivery';
+            $newOrder->delivery_status = 'processing';
+            $newOrder->image = $item->image;
+            $newOrder->product_id = $item->Product_id;
+            // Add other columns as needed
+            $newOrder->save();
+        
+            // Delete each item from the cart
+            $item->delete();
+        }
+        
+        return redirect()->route('cart')->with('message', 'Pesanan telah diterima dan dipindahkan ke daftar pesanan.');
+    }    
+    
 
     public function delivered($created_at, $user_id)
     {
@@ -142,6 +188,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    
     public function print_pdf($id)
     {
         $order=order::find($id);

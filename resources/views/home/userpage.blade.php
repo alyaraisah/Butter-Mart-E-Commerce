@@ -25,6 +25,9 @@
    </head>
 
    <body>
+
+   @include('sweetalert::alert')
+   
       <div class="hero_area">
         <!-- header section strats -->
         @include('home.header')
@@ -62,6 +65,8 @@
          <p class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
          </p>
       </div>
+
+
 
       <script>
          document.addEventListener("DOMContentLoaded", function(event) { 

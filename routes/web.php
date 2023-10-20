@@ -87,15 +87,28 @@ route::get('/product_search', [HomeController::class, 'product_search']);
 
 route::get('/products', [HomeController::class, 'product']);
 
+route::get('/products1', [HomeController::class, 'product1']);
+
 route::get('/category_bahankue', [HomeController::class, 'category_bahankue']);
+
+route::get('/category_bahankue1', [HomeController::class, 'category_bahankue1']);
 
 route::get('/category_bumbudapur', [HomeController::class, 'category_bumbudapur']);
 
+route::get('/category_bumbudapur1', [HomeController::class, 'category_bumbudapur1']);
+
 route::get('/category_peralatandapur', [HomeController::class, 'category_peralatandapur']);
+
+route::get('/category_peralatandapur1', [HomeController::class, 'category_peralatandapur1']);
 
 route::get('/category_plastik', [HomeController::class, 'category_plastik']);
 
+route::get('/category_plastik1', [HomeController::class, 'category_plastik1']);
+
 route::get('/category_aksesoris', [HomeController::class, 'category_aksesoris']);
 
+route::get('/category_aksesoris1', [HomeController::class, 'category_aksesoris1']);
+
 route::get('/category_search', [HomeController::class, 'category_search']);
+
 

@@ -26,7 +26,7 @@
 
    <style>
    .mx-auto {
-      position:absolute;
+      position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -35,7 +35,10 @@
       text-align: center;
       padding: 15px 0;
       z-index: 100;
+      margin-bottom: auto;
    }
+
+
    </style>
 
    <body>
@@ -53,14 +56,14 @@
                         <br><br>
 
                         <div style="margin-top: -100px; margin-bottom:50px;">
-                            <form action="{{url('product_search')}}" method="GET" style="display: inline-block; margin-right: 10px;">
+                            <form action="{{url('category_search')}}" method="GET" style="display: inline-block; margin-right: 10px;">
                                 <input style="width: 280px; height:44px;" type="text" name="search" placeholder="Cari Produk Apa?" >
                                 <input type="submit" value="Cari" name="" id="" style="display: inline-block; transition: box-shadow 0.3s;" onmouseover="this.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';" onmouseout="this.style.boxShadow = 'none';">
                             </form>
                         </div>
 
                         <div class="category-buttons">
-                            <!--<a href="{{ url('products') }}" class="category-button">Semua</a>-->
+                            <a href="{{ url('products') }}" class="category-button">Semua</a>
                             <a href="{{ url('category_bahankue') }}" class="category-button">Bahan Kue</a>
                             <a href="{{ url('category_bumbudapur') }}" class="category-button">Bumbu Dapur</a>
                             <a href="{{ url('category_peralatandapur') }}" class="category-button">Peralatan Dapur</a>

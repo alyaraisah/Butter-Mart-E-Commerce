@@ -8,17 +8,13 @@
                   <div class="col-md-6 ml-auto">
                      <div class="heading_container remove_line_bt">
                         <h2>
-                           #NewArrivals
+                           #Lengkap
                         </h2>
                      </div>
                      <p style="margin-top: 20px;margin-bottom: 30px;">
-                        Vitae fugiat laboriosam officia perferendis provident aliquid voluptatibus dolorem, fugit ullam sit earum id eaque nisi hic? Tenetur commodi, nisi rem vel, ea eaque ab ipsa, autem similique ex unde!
+                        Kamu cari apa? <br>Mulai dari bahan kue, bumbu dapur, sampai peralatan masak kami sedia semua! Gak ada? Tenang aja kami siap mencarikan khusus untukmu!
                      </p>
-                     <div class="btn-box">
-                        <a href="" class="btn1">
-                           Shop Now
-                        </a>
-                     </div>
+       
                   </div>
                </div>
             </div>

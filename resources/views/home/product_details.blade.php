@@ -81,7 +81,8 @@
    }
 
    .mx-auto {
-      position:absolute;
+      position:fixed;
+      margin-bottom: auto;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -91,7 +92,6 @@
       padding: 15px 0;
       z-index: 100;
    }
-
    </style>
 
    <body>

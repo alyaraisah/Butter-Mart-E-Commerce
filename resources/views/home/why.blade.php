@@ -2,7 +2,7 @@
          <div class="container">
             <div class="heading_container heading_center">
                <h2>
-                  Why Shop With Us
+                  Belanja di Butter Mart
                </h2>
             </div>
             <div class="row">
@@ -97,10 +97,10 @@
                      </div>
                      <div class="detail-box">
                         <h5>
-                           Fast Delivery
+                           Pengiriman Cepat
                         </h5>
                         <p>
-                           variations of passages of Lorem Ipsum available
+                           Tanpa lama, kami akan langsung antar belanjaanmu
                         </p>
                      </div>
                   </div>
@@ -212,10 +212,10 @@
                      </div>
                      <div class="detail-box">
                         <h5>
-                           Free Shiping
+                           Gratis Ongkir 
                         </h5>
                         <p>
-                           variations of passages of Lorem Ipsum available
+                           Gak perlu khawatir, pengiriman gratis sampai rumahmu
                         </p>
                      </div>
                   </div>
@@ -233,10 +233,10 @@
                      </div>
                      <div class="detail-box">
                         <h5>
-                           WhatsApp Payment
+                           Bayar di WhatsApp
                         </h5>
                         <p>
-                           variations of passages of Lorem Ipsum available
+                           Belanja di web, bebas atur belanjaan, bayar cukup di WA
                         </p>
                      </div>
                   </div>

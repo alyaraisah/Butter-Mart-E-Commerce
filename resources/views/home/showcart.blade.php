@@ -120,7 +120,7 @@
         }
 
         .mx-auto {
-            position: absolute;
+            position:fixed;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -204,7 +204,14 @@
                     @foreach($cart as $cart)
                         <tr>
                             <td>{{$cart->product_title}}</td>
-                            <td>{{$cart->quantity}}
+                            <td>
+                                <form action="{{ route('update_cart', $cart->id) }}" method="POST">
+                                    @csrf
+                                    <div class="quantity-container">
+                                        <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
+                                        <button type="submit" class="btn btn-primary cart">Perbarui</button>
+                                    </div>
+                                </form>
                             </td>
                             <td>Rp{{$cart->price}}</td>
                             <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
@@ -230,7 +237,7 @@
 
                 <div class="button-container">
                     <!--<h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>-->
-                    <a onclick="return confirm('Apakah Kamu Yakin?')" href="{{ url('cash_order', $totalproduct) }}" class="btn btn-danger order-button">Pesan</a>
+                    <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" class="btn btn-danger order-button">Pesan</a>
                     <a href="{{url('show_order')}}" class="btn btn-primary view-order-button">Lihat Pesanan</a>
                 </div>
 
