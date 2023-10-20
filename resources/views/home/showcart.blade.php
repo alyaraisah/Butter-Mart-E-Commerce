@@ -246,9 +246,7 @@
         </div>
         
       
-        <!-- footer start 
-        @include('home.footer')
-        footer end -->
+ 
 
       <div class="content-footer">
          <p  class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         

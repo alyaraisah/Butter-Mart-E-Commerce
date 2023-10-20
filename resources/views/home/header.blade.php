@@ -42,13 +42,13 @@
                         </a>
                     </li>
 
-                    <form class="nav-item" >
+                    <form class="nav-item" id="scrollToProductsForm">
                         <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" style="color: rgba(21, 48, 74, 0.9);" aria-hidden="true"
-                            onmouseover="this.style.color='#2E68A2';" onmouseout="this.style.color='rgba(21, 48, 74, 0.9)';">
-                            </i>
+                            onmouseover="this.style.color='#2E68A2';" onmouseout="this.style.color='rgba(21, 48, 74, 0.9)';"></i>
                         </button>
                     </form>
+
 
                     @if (Route::has('login'))
 

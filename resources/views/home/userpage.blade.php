@@ -67,7 +67,6 @@
       </div>
 
 
-
       <script>
          document.addEventListener("DOMContentLoaded", function(event) { 
                var scrollpos = localStorage.getItem('scrollpos');

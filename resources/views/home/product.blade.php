@@ -1,4 +1,4 @@
-<section class="product_section layout_padding">
+<section class="product_section layout_padding" id="products">
          <div class="container" style="position: relative;">
             <div class="heading_container heading_center">
                <h2>
@@ -104,12 +104,30 @@
 
             </div>
             <div class="btn-box" style="margin-top:100px; margin-bottom:-50px; ">
-               <a href="">
+               <a href="{{ url('products1') }}">
                Lihat Semua
                </a>
             </div> 
          </div>
 </section>
+
+<script>
+    // Add an event listener to the search form to handle scrolling
+    document.getElementById('scrollToProductsForm').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the form from submitting
+        scrollToProducts();
+    });
+
+    // Function to scroll to the products section
+    function scrollToProducts() {
+        const productsSection = document.getElementById('products');
+        if (productsSection) {
+            productsSection.scrollIntoView({
+                behavior: 'smooth',
+            });
+        }
+    }
+</script>
 
 
 
