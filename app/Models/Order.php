@@ -11,9 +11,16 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
+        'name',
+        'email',
+        'phone',
+        'address',
         'product_title',
         'quantity',
         'price',
-        // Add other columns as needed
+        'image',
+        'product_id',
+        'payment_status',
+        'delivery_status',
     ];
 }

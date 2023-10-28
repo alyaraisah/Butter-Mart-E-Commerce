@@ -167,10 +167,10 @@ class AdminController extends Controller
         }
         
         return redirect()->route('cart')->with('message', 'Pesanan telah diterima dan dipindahkan ke daftar pesanan.');
-    }    
+    }   
     
 
-    public function delivered($created_at, $user_id)
+    public function delivered1($created_at, $user_id)
     {
         // Ambil semua pesanan dengan created_at dan user_id yang sesuai
         $orders = Order::where('created_at', $created_at)
@@ -187,6 +187,31 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function delivered($created_at, $user_id)
+    {
+        // Ambil semua pesanan dengan created_at dan user_id yang sesuai
+        $orders = Order::where('created_at', $created_at)
+                    ->where('user_id', $user_id)
+                    ->where('delivery_status', 'processing')
+                    ->get();
+
+        // Ubah status pengiriman dan status pembayaran untuk setiap pesanan
+        foreach ($orders as $order) {
+            $order->delivery_status = "Delivered";
+            $order->payment_status = "Paid";
+            $order->save();
+
+            // Decrease the product quantity in the database
+            $product = Product::find($order->product_id);
+            if ($product) {
+                $product->update(['quantity' => $product->quantity - $order->quantity]);
+            }
+        }
+
+        return redirect()->back();
+    }
+
 
     
     public function print_pdf($id)

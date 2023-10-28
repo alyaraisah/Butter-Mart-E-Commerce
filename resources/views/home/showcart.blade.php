@@ -168,14 +168,13 @@
     </style>
 
    <body>
-    
       <div>
         <!-- header section strats -->
         @include('home.header')
         <!-- end header section -->
 
         @if(session()->has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             {{session()->get('message')}}
         </div>
@@ -208,6 +207,7 @@
                                 <form action="{{ route('update_cart', $cart->id) }}" method="POST">
                                     @csrf
                                     <div class="quantity-container">
+                                        <input type="hidden" name="title" value="{{ $cart->product_title }}">
                                         <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
                                         <button type="submit" class="btn btn-primary cart">Perbarui</button>
                                     </div>

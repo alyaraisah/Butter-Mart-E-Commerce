@@ -127,6 +127,34 @@
             });
         }
     }
+
+    function isScrolledIntoView(elem) {
+        var rect = elem.getBoundingClientRect();
+        var elemTop = rect.top;
+        var elemBottom = rect.bottom;
+
+        // Check if the element is at least partially visible
+        var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+        return isVisible;
+    }
+
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+
+        var alertMessage = document.querySelector('.alert-danger');
+        if (alertMessage) {
+            if (!isScrolledIntoView(alertMessage)) {
+                // Scroll to the alert message if it's not in view
+                alertMessage.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
 </script>
 
 
