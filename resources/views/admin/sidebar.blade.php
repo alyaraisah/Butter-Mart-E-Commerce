@@ -74,14 +74,14 @@
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
-              <span class="menu-title">Products</span>
+              <span class="menu-title">Produk</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/view_product')}}">Add Products</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('/view_product')}}">Tambah Products</a></li>
                 <li class="nav-item"> 
-                  <a class="nav-link" href="{{url('/show_product')}}">Show Products</a>
+                  <a class="nav-link" href="{{url('/show_product')}}">Lihat Products</a>
                 </li>
               </ul>
             </div>
@@ -92,7 +92,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Category</span>
+              <span class="menu-title">Kategori</span>
             </a>
           </li>
 
@@ -101,7 +101,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Cart</span>
+              <span class="menu-title">Keranjang</span>
             </a>
           </li>
 
@@ -110,7 +110,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Order</span>
+              <span class="menu-title">Pesanan</span>
             </a>
           </li>
           

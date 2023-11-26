@@ -15,6 +15,7 @@ body {
   overflow-x: hidden;
 }
 
+
 .layout_padding {
   padding: 70px 0;
 }
@@ -55,6 +56,7 @@ h2 {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+
 }
 
 .heading_container h2 {
@@ -361,6 +363,10 @@ a:focus {
      object-position: top right;
 }
 
+/* end slider section */
+
+/* why section */
+
 .why_section .box {
   text-align: center;
   margin-top: 45px;
@@ -394,6 +400,8 @@ color: #15304a;
   margin:auto;
 }
 
+/* end why section */
+
 .product_section .heading_container {
   margin-bottom: 20px;
 }
@@ -401,7 +409,6 @@ color: #15304a;
 .product_section h2 {
   color: #15304a;
 }
-
 
 .product_section .box {
     position: relative;
@@ -589,20 +596,17 @@ font-size: 18px;
 
 .category-buttons {
   display: flex;
-  margin-bottom: 30px;
   justify-content: center; 
 }
 
 .category-button {
-  margin: 0 5px;
-  position: relative;
   transition: box-shadow 0.3s ease; 
-  width: 177px;
+  width: 155px;
   height: 60px; 
   border: 1px solid #706E6B;
-  border-radius: 5px;
+  border-radius: 10px;
   color: #15304A;
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -42,7 +42,7 @@
    </style>
 
    <body>
-        <div class="hero_area">
+        <div class="hero_area" id="top">
             <!-- header section strats -->
             @include('home.header')
             <!-- end header section -->

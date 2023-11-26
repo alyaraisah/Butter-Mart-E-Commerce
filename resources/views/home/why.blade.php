@@ -236,7 +236,7 @@
                            Bayar di WhatsApp
                         </h5>
                         <p>
-                           Belanja di web, bebas atur belanjaan, bayar cukup di WA
+                           Bebas atur belanjaan di web, bayar cukup di WhatsApp
                         </p>
                      </div>
                   </div>

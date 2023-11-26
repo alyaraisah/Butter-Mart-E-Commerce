@@ -5,12 +5,12 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('Lupa kata sandi? Tidak masalah. Silakan berikan alamat email Anda dan kami akan mengirimkan tautan reset kata sandi agar Anda dapat membuat kata sandi baru.') }}
         </div>
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+                {{ __('Email sudah dikirim! Silakan periksa kotak masuk atau folder spam untuk tautan reset kata sandi.') }}
             </div>
         @endif
 
@@ -21,12 +21,12 @@
 
             <div class="block">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Masukkan Email yang Sudah Terdaftar" style="font-size: 13px;" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Tautan Email Reset Kata Sandi') }}
                 </x-button>
             </div>
         </form>

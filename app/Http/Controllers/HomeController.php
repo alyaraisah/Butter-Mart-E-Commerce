@@ -155,15 +155,22 @@ class HomeController extends Controller
 
             $itemIndex = -1;
 
-            for ($i = 0; $i < count($cartArray); $i++) {
-                if ($cartArray[$i]['product_id'] == $cartItem['product_id']) {
-                    $itemIndex = $i;
-                    break;
+            if (!empty($cartArray)) {
+                for ($i = 0; $i < count($cartArray); $i++) {
+                    // Verify if the key 'product_id' exists in the current array element
+                    if (isset($cartArray[$i]['product_id']) && $cartArray[$i]['product_id'] == $cartItem['product_id']) {
+                        $itemIndex = $i;
+                        break;
+                    }
                 }
             }
 
             if ($itemIndex >= 0) {
                 $cartArray[$itemIndex]['quantity'] += $cartItem['quantity'];
+                // Recalculate the price based on the updated quantity
+                $product = Product::find($id);
+                $newPrice = $product->discount_price ? $product->discount_price * $cartArray[$itemIndex]['quantity'] : $product->price * $cartArray[$itemIndex]['quantity'];
+                $cartArray[$itemIndex]['price'] = $newPrice;
             } else {
                 $cartArray[] = $cartItem;
             }
@@ -382,7 +389,7 @@ class HomeController extends Controller
             $message .= 'Silahkan Kirim Pesan Ini!';
             //Cart::where('user_id', Auth::id())->delete();
             $adminNumber = env('WHATSAPP_ADMIN_NUMBER');
-            return redirect('https://wa.me/34602256248?text=' . urlencode($message));
+            return redirect('https://wa.me/6285888273995?text=' . urlencode($message));
         }else {
             // Pengguna tidak login, handle keranjang belanja dalam cookies
             $cartFromCookies = request()->cookie('cart_item');
@@ -414,7 +421,7 @@ class HomeController extends Controller
                 $message .= 'Silahkan Kirim Pesan Ini!';
                 //Cookie::queue(Cookie::forget('cart_item'));
                 // Hapus keranjang belanja dalam cookies
-                return redirect('https://wa.me/34602256248?text=' . urlencode($message));
+                return redirect('https://wa.me/6285888273995?text=' . urlencode($message));
             } else {
                 return redirect()->back()->with('message', 'Keranjang Mu Kosong');
             }

@@ -13,8 +13,8 @@
                   </p>
                   <p>
                      <strong>WHATASAPP/TELEPON:</strong> <br>
-                     <a href="https://api.whatsapp.com/send?phone=6288219927413" style="text-decoration: none; color: black;">
-                        +62 882 1992 7413
+                     <a href="https://api.whatsapp.com/send?phone=6285888273995" target="_blank" style="text-decoration: none; color: black;">
+                        +62 858 8827 3995
                      </a>
                   </p>
                </div>
@@ -58,17 +58,17 @@
                         <h3>HUBUNGI KAMI</h3>
                         <div class="information_f">
                            <p>
-                              <a href="https://api.whatsapp.com/send?phone=6288219927413" style="text-decoration: none; color: black;">
+                              <a href="https://api.whatsapp.com/send?phone=6288219927413" target="_blank" style="text-decoration: none; color: black;">
                                  <i class="fab fa-whatsapp"></i> WhatsApp
                               </a>
                            </p>
                            <p>
-                              <a href="https://www.instagram.com/butter.mart/?hl=id" style="text-decoration: none; color: black;">
+                              <a href="https://www.instagram.com/butter.mart/?hl=id" target="_blank" style="text-decoration: none; color: black;">
                                  <i class="fab fa-instagram"></i> Instagram
                               </a>
                            </p>
                            <p>
-                              <a href="https://maps.app.goo.gl/9NwHPg1FMZRgohHa7" style="text-decoration: none; color: black;">
+                              <a href="https://maps.app.goo.gl/9NwHPg1FMZRgohHa7" target="_blank" style="text-decoration: none; color: black;">
                                  <i class="fas fa-map-marker-alt"></i> Lokasi
                               </a>
                            </p>

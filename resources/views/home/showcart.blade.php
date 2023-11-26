@@ -237,7 +237,7 @@
 
                 <div class="button-container">
                     <!--<h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>-->
-                    <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" class="btn btn-danger order-button">Pesan</a>
+                    <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
                     <a href="{{url('show_order')}}" class="btn btn-primary view-order-button">Lihat Pesanan</a>
                 </div>
 

@@ -1,28 +1,28 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
+        {{ __('Autentikasi Dua Faktor') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
+        {{ __('Tambahkan keamanan tambahan pada akun Anda menggunakan autentikasi dua faktor.') }}
     </x-slot>
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 @if ($showingConfirmation)
-                    {{ __('Finish enabling two factor authentication.') }}
+                    {{ __('Pengaktifan autentikasi dua faktor selesai.') }}
                 @else
-                    {{ __('You have enabled two factor authentication.') }}
+                    {{ __('Anda sudah mengaktifkan autentikasi dua faktor') }}
                 @endif
             @else
-                {{ __('You have not enabled two factor authentication.') }}
+                {{ __('Anda belum mengaktifkan autentikasi dua faktor.') }}
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
+                {{ __('Ketika autentikasi dua faktor diaktifkan, Anda akan diminta untuk memasukkan token yang aman dan acak saat proses autentikasi. Anda dapat mengambil token ini dari aplikasi Google Authenticator pada ponsel Anda.') }}
             </p>
         </div>
 
@@ -31,9 +31,9 @@
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
                         @if ($showingConfirmation)
-                            {{ __('To finish enabling two factor authentication, scan the following QR code using your phone\'s authenticator application or enter the setup key and provide the generated OTP code.') }}
+                            {{ __('Untuk menyelesaikan pengaktifan autentikasi dua faktor, pindai kode QR berikut menggunakan aplikasi otentikator di ponsel Anda atau masukkan kunci pengaturan dan berikan kode OTP yang dihasilkan.') }}
                         @else
-                            {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application or enter the setup key.') }}
+                            {{ __('Autentikasi dua faktor telah diaktifkan. Pindai kode QR berikut menggunakan aplikasi otentikator di ponsel Anda atau masukkan kunci pengaturan.') }}
                         @endif
                     </p>
                 </div>
@@ -44,7 +44,7 @@
 
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
-                        {{ __('Setup Key') }}: {{ decrypt($this->user->two_factor_secret) }}
+                        {{ __('Kunci Pengaturan') }}: {{ decrypt($this->user->two_factor_secret) }}
                     </p>
                 </div>
 
@@ -64,7 +64,7 @@
             @if ($showingRecoveryCodes)
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
-                        {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
+                        {{ __('Simpan kode pemulihan ini di dalam pengelola kata sandi yang aman. Kode-kode ini dapat digunakan untuk mendapatkan kembali akses ke akun Anda jika perangkat autentikasi dua faktor Anda hilang.') }}
                     </p>
                 </div>
 
@@ -80,26 +80,26 @@
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-button type="button" wire:loading.attr="disabled">
-                        {{ __('Enable') }}
+                        {{ __('Aktifkan') }}
                     </x-button>
                 </x-confirms-password>
             @else
                 @if ($showingRecoveryCodes)
                     <x-confirms-password wire:then="regenerateRecoveryCodes">
                         <x-secondary-button class="mr-3">
-                            {{ __('Regenerate Recovery Codes') }}
+                            {{ __('Ulangi Kode Pemulihan') }}
                         </x-secondary-button>
                     </x-confirms-password>
                 @elseif ($showingConfirmation)
                     <x-confirms-password wire:then="confirmTwoFactorAuthentication">
                         <x-button type="button" class="mr-3" wire:loading.attr="disabled">
-                            {{ __('Confirm') }}
+                            {{ __('Konfirmasi') }}
                         </x-button>
                     </x-confirms-password>
                 @else
                     <x-confirms-password wire:then="showRecoveryCodes">
                         <x-secondary-button class="mr-3">
-                            {{ __('Show Recovery Codes') }}
+                            {{ __('Tampilkan Kode Pemulihan') }}
                         </x-secondary-button>
                     </x-confirms-password>
                 @endif
@@ -107,13 +107,13 @@
                 @if ($showingConfirmation)
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-secondary-button wire:loading.attr="disabled">
-                            {{ __('Cancel') }}
+                            {{ __('Batalkan') }}
                         </x-secondary-button>
                     </x-confirms-password>
                 @else
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-danger-button wire:loading.attr="disabled">
-                            {{ __('Disable') }}
+                            {{ __('Nonaktifkan') }}
                         </x-danger-button>
                     </x-confirms-password>
                 @endif

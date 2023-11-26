@@ -176,10 +176,8 @@
                     <th>Gambar</th>
                     <th>Hapus</th>
                 </tr>
-                @php
-                    $totalprice = 0;
-                    $totalproduct = 0;
-                @endphp
+                <?php $totalprice = 0; ?>
+                <?php $totalproduct=0;  ?>
                 @if(empty($cart))
                     <tr>
                         <td colspan="5">Keranjang Mu Kosong</td>
@@ -217,7 +215,7 @@
             </div>
 
             <div class="button-container">
-                <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" class="btn btn-danger order-button">Pesan</a>
+                <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
             </div>
         </div>
     </div>
