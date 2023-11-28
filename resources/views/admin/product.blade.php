@@ -78,39 +78,39 @@
 
             <div class="div_center">
 
-                <h1 class="font_size">Add Product</h1>
+                <h1 class="font_size">Tambah Produk</h1>
                 
                 <form action="{{url('/add_product')}}" method="POST" enctype="multipart/form-data">
 
                 @csrf
 
                 <div class="div_design">
-                    <label for="">Product Title :</label>
+                    <label for="">Nama Produk :</label>
                     <input class="text_color" type="text" name="title" placeholder="Write a title" required="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Product Description :</label>
+                    <label for="">Deskripsi Produk :</label>
                     <input class="text_color" type="text" name="description" placeholder="Write a description" required="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Product Price :</label>
+                    <label for="">Harga :</label>
                     <input class="text_color" type="number" name="price" placeholder="Write a price" required="">
                 </div>
 
-                <div class="div_design">
+                <!--<div class="div_design">
                     <label for="">Discount Price :</label>
                     <input class="text_color" type="number" name="dis_price" placeholder="Write a discount price">
-                </div>
+                </div>-->
 
                 <div class="div_design">
-                    <label for="">Product Quantity :</label>
+                    <label for="">Kuantitas :</label>
                     <input class="text_color" type="number" min="0" name="quantity" placeholder="Write a quantity" required="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Product Category :</label>
+                    <label for="">Kategori :</label>
                     <select class="text_color" name="category" required="">
                         <option value="" >Add a category here</option>
                         
@@ -124,12 +124,12 @@
                 </div>
 
                 <div class="div_design">
-                    <label for="">Product Image :</label>
+                    <label for="">Gambar :</label>
                     <input type="file" name="image" required="">
                 </div>
 
                 <div class="div_design">
-                    <input type="submit" value="Add Product" class="btn btn-primary">
+                    <input type="submit" value="Tambah Produk" class="btn btn-primary">
                 </div>
                 
                 </form>

@@ -153,90 +153,141 @@
     .view-order-button:hover {
         background-color: #0056b3;
     }
+
+    @media (max-width: 767px) {
+        .center {
+            margin: auto;
+            width: 95%; /* Adjusted width to 95% */
+            text-align: center;
+            padding: 30px;
+            padding-bottom: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px; /* Reduced margin between table and other elements */
+        }
+    }
 </style>
 
 
 <body>
-    <div>
+    <div class="header-showcart">
         @include('home.header')
-        
-        @if(session()->has('message'))
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            {{ session()->get('message') }}
-        </div>
-        @endif
 
-        <div class="center">
-            <table class="cart-table">
-                <tr>
-                    <th>Nama Produk</th>
-                    <th>Kuantitas</th>
-                    <th>Harga</th>
-                    <th>Gambar</th>
-                    <th>Hapus</th>
-                </tr>
-                <?php $totalprice = 0; ?>
-                <?php $totalproduct=0;  ?>
-                @if(empty($cart))
-                    <tr>
-                        <td colspan="5">Keranjang Mu Kosong</td>
-                    </tr>
-                @else
-                    @foreach($cart as $cartItem)
+        <div style="padding-top:100px;">
+            @if(session()->has('message'))
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+
+            <div class="center" style="margin-top:-20px;">
+            
+                <div class="table-responsive">
+                    <table class="cart-table">
                         <tr>
-                            <td>{{ $cartItem['product_title'] }}</td>
-                            <td>
-                                <form action="{{ route('update_cart', $cartItem['product_id']) }}" method="POST">
-                                    @csrf
-                                    <div class="quantity-container">
-                                        <input type="hidden" name="title" value="{{ $cartItem['product_title'] }}">
-                                        <input type="number" name="quantity" value="{{ $cartItem['quantity'] }}" min="1" class="quantity-input">
-                                        <button type="submit" class="btn btn-primary cart">Perbarui</button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>Rp{{ $cartItem['price'] }}</td>
-                            <td style="width: 55px;"><img class="w-100" src="/product/{{ $cartItem['image'] }}"></td>
-                            <td>
-                                <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{ url('/remove_cart', $cartItem['product_id']) }}">Hapus</a>
-                            </td>
+                            <th>Nama Produk</th>
+                            <th>Kuantitas</th>
+                            <th>Harga</th>
+                            <th>Gambar</th>
+                            <th>Hapus</th>
                         </tr>
-                        @php
-                            $totalproduct++;
-                            $totalprice += $cartItem['price'];
-                        @endphp
-                    @endforeach
-                @endif
-            </table>
+                        <?php $totalprice = 0; ?>
+                        <?php $totalproduct=0;  ?>
+                        @if(empty($cart))
+                            <tr>
+                                <td colspan="5">Keranjang Mu Kosong</td>
+                            </tr>
+                        @else
+                            @foreach($cart as $cartItem)
+                                <tr>
+                                    <td>{{ $cartItem['product_title'] }}</td>
+                                    <td>
+                                        <form action="{{ route('update_cart', $cartItem['product_id']) }}" method="POST">
+                                            @csrf
+                                            <div class="quantity-container">
+                                                <input type="hidden" name="title" value="{{ $cartItem['product_title'] }}">
+                                                <input type="number" name="quantity" value="{{ $cartItem['quantity'] }}" min="1" class="quantity-input">
+                                                <button type="submit" class="btn btn-primary cart" >Perbarui</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td>Rp{{ $cartItem['price'] }}</td>
+                                    <td style="width: 55px;"><img class="w-100" src="/product/{{ $cartItem['image'] }}"></td>
+                                    <td>
+                                        <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{ url('/remove_cart', $cartItem['product_id']) }}">Hapus</a>
+                                    </td>
+                                </tr>
+                                @php
+                                    $totalproduct++;
+                                    $totalprice += $cartItem['price'];
+                                @endphp
+                            @endforeach
+                        @endif
+                    </table>
+                </div>
 
-            <div class="cart-actions">
-                <span>Harga Total: Rp{{ $totalprice }}</span><br>
-            </div>
+                <div class="cart-actions d-none d-md-block" >
+                    <span>Harga Total: Rp{{ $totalprice }}</span><br>
+                </div>
 
-            <div class="button-container">
-                <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
+                <div class="cart-actions d-md-none" style="margin-top: 30px;">
+                    <span>Harga Total: Rp{{ $totalprice }}</span><br>
+                </div>
+
+                <div class="button-container">
+                    <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
+                </div>
             </div>
         </div>
+
+        <div class="content-footer">
+            <p class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a></p>
+        </div>
     </div>
+        
+<!-- JavaScript -->
+<script>
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });   
+    }
 
-    <div class="content-footer">
-        <p class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a></p>
-    </div>
+    function isScrolledIntoView(elem) {
+        var rect = elem.getBoundingClientRect();
+        var elemTop = rect.top;
+        var elemBottom = rect.bottom;
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            var scrollpos = localStorage.getItem('scrollpos');
-            if (scrollpos) window.scrollTo(0, scrollpos);
-        });
+        // Check if the element is at least partially visible
+        var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
 
-        window.onbeforeunload = function(e) {
-            localStorage.setItem('scrollpos', window.scrollY);
-        };
-    </script>
-    <script src="home/js/jquery-3.4.1.min.js"></script>
-    <script src="home/js/popper.min.js"></script>
-    <script src="home/js/bootstrap.js"></script>
-    <script src="home/js/custom.js"></script>
+        return isVisible;
+    }
+
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+
+        var alertMessage = document.querySelector('.alert-danger');
+        if (alertMessage) {
+            scrollToTop();
+        }
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+
+</script>
+<script src="home/js/jquery-3.4.1.min.js"></script>
+<script src="home/js/popper.min.js"></script>
+<script src="home/js/bootstrap.js"></script>
+<script src="home/js/custom.js"></script>
+
 </body>
 </html>

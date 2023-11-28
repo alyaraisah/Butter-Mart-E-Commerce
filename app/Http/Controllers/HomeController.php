@@ -21,38 +21,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $product = Product::paginate(9);
+        $product = Product::paginate(12);
         return view('home.userpage', compact('product'));
     }
 
-    public function redirectgakjadi()
-    {
-        if (Auth::check()) {
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == "1") {
-                $total_product = product::all()->count();
-                $total_order = order::all()->count();
-                $total_product = product::all()->count();
-                $total_user = user::all()->count();
-                $order = order::all();
-                $total_revenue = 0;
-                foreach ($order as $order) {
-                    $total_revenue = $total_revenue + $order->price;
-                }
-
-                $total_delivered = order::where('delivery_status', '=', 'delivered')->get()->count();
-                $total_processing = order::where('delivery_status', '=', 'processing')->get()->count();
-
-                return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_delivered'));
-            } else {
-                $product = Product::paginate(9);
-                return view('home.userpage', compact('product'));
-            }
-        } else {
-            return redirect()->route('login');
-        }
-    }
+    
 
     public function redirect()
     {
@@ -77,7 +50,7 @@ class HomeController extends Controller
                 return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_delivered'));
             }
         } else {
-            $product = Product::paginate(9);
+            $product = Product::paginate(12);
             return view('home.userpage', compact('product'));
         }
     }
@@ -96,6 +69,7 @@ class HomeController extends Controller
             $message = 'Produk ' . $product->title . ' sisa ' . $product->quantity;
             return redirect()->back()->with('message', $message);
         }
+        
         if (Auth::id()) {
             $user = Auth::user();
             $userid = $user->id;
@@ -454,97 +428,103 @@ class HomeController extends Controller
     public function product_search(Request $request)
     {
         $search_text = $request->search;
-        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(9);
+        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function product()
     {
-        $product = Product::paginate(18);
+        $product = Product::paginate(24);
         return view('home.all_product', compact('product'));
     }
 
     public function product1()
     {
-        $product = Product::paginate(9);
+        $product = Product::paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function category_bahankue()
     {
         $category = 'bahan kue'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(24);
         return view('home.all_product', compact('product'));
     }
 
     public function category_bahankue1()
     {
         $category = 'bahan kue'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(9);
+        $product = Product::where('category', $category)->paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function category_bumbudapur()
     {
         $category = 'bumbu dapur'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(24);
         return view('home.all_product', compact('product'));
     }
 
     public function category_bumbudapur1()
     {
         $category = 'bumbu dapur'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(9);
+        $product = Product::where('category', $category)->paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function category_peralatandapur()
     {
         $category = 'peralatan dapur'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(24);
         return view('home.all_product', compact('product'));
     }
 
     public function category_peralatandapur1()
     {
         $category = 'peralatan dapur'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(9);
+        $product = Product::where('category', $category)->paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function category_plastik()
     {
         $category = 'plastik'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(24);
         return view('home.all_product', compact('product'));
     }
 
     public function category_plastik1()
     {
         $category = 'plastik'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(9);
+        $product = Product::where('category', $category)->paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function category_aksesoris()
     {
         $category = 'aksesoris'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(24);
         return view('home.all_product', compact('product'));
     }
 
     public function category_aksesoris1()
     {
         $category = 'aksesoris'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(9);
+        $product = Product::where('category', $category)->paginate(12);
         return view('home.userpage', compact('product'));
     }
 
     public function category_search(Request $request)
     {
         $search_text = $request->search;
-        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(12);
+        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(24);
         return view('home.all_product', compact('product'));
+    }
+
+    public function contact()
+    {
+        // Your contact method logic goes here
+        return view('home.contact'); // Or any other response you want to return
     }
 
 

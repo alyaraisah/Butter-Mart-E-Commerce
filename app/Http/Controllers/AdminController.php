@@ -36,14 +36,14 @@ class AdminController extends Controller
         $data=new category;
         $data->category_name=$request->category;
         $data->save();
-        return redirect()->back()->with('message','Category Added Successfully!');
+        return redirect()->back()->with('message','Kategori Berhasil Ditambahkan!');
     }
 
     public function delete_category ($id) 
     {
         $data=category::find($id);
         $data->delete();
-        return redirect()->back()->with('message', 'Category Deleted Successfully!');
+        return redirect()->back()->with('message', 'Kategori Berhasil Dihapus!');
     }
 
     public function view_product() 
@@ -71,7 +71,7 @@ class AdminController extends Controller
 
         $product->save();
 
-        return redirect()->back()->with('message', 'Product dded Successfully');
+        return redirect()->back()->with('message', 'Produk Berhasil Ditambahkan!');
     }
 
     public function show_product() 
@@ -84,7 +84,7 @@ class AdminController extends Controller
     {
         $product=product::find($id);
         $product->delete();
-        return redirect()->back()->with('message', 'Product Deleted Successfully!');
+        return redirect()->back()->with('message', 'Produk Berhasi Dihapus!');
     }
 
     public function update_product ($id) 
@@ -114,7 +114,7 @@ class AdminController extends Controller
             }
             
             $product->save();
-            return redirect()->back()->with('message', 'Product Updated Succesfully');
+            return redirect()->back()->with('message', 'Produk Berhasil Diubah!');
         } else{
             return redirect('login');
         }
@@ -155,7 +155,7 @@ class AdminController extends Controller
             $newOrder->product_title = $item->product_title;
             $newOrder->quantity = $item->quantity;
             $newOrder->price = $item->price;
-            $newOrder->payment_status = 'cash on delivery';
+            $newOrder->payment_status = 'Paid on WA';
             $newOrder->delivery_status = 'processing';
             $newOrder->image = $item->image;
             $newOrder->product_id = $item->Product_id;
@@ -226,6 +226,13 @@ class AdminController extends Controller
         $searchText = $request->search;
         $orders = Order::where('name', 'LIKE', '%' . $searchText . '%')->orwhere('phone', 'LIKE', '%' . $searchText . '%')->orwhere('product_title', 'LIKE', '%' . $searchText . '%')->get();
         return view('admin.order', compact('orders'));
+    }
+
+    public function searchdata2(Request $request)
+    {
+        $searchText = $request->search2;
+        $carts = Cart::where('name', 'LIKE', '%' . $searchText . '%')->orwhere('product_title', 'LIKE', '%' . $searchText . '%')->get();
+        return view('admin.cart', compact('carts'));
     }
 
 

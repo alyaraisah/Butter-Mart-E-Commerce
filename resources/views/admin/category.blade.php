@@ -58,12 +58,12 @@
             @endif
 
             <div class="div_center">
-                <h2 class="h2_font">Add Category</h2>
+                <h2 class="h2_font">Tambah Kategori</h2>
 
                 <form action="{{url('/add_category')}}" method="POST">
                   @csrf
                   <input class="input_color" type="text" name="category" placeholder="Write category name">
-                  <input type="submit" class="btn btn-primary" name="submit" value="Add Category">
+                  <input type="submit" class="btn btn-primary" name="submit" value="Tambah Kategori">
                 </form>
 
             </div>
@@ -71,8 +71,8 @@
               <table class="center">
 
                 <tr>
-                  <td class="table-title">Category Name</td>
-                  <td class="table-title">Action</td>
+                  <td class="table-title">Kategori</td>
+                  <td class="table-title">Hapus</td>
                 </tr>
 
                 @foreach($data as $data)
@@ -83,7 +83,7 @@
                   
                   <td>
 
-                    <a onclick="return confirm('Are You Sure To Delete This?')" class="btn btn-danger" href="{{url('delete_category', $data->id)}}">Delete</a>
+                    <a onclick="return confirm('Apakah Kamu Yakin ingin Mehapus Kategori Ini?')" class="btn btn-danger" href="{{url('delete_category', $data->id)}}">Hapus</a>
 
                   </td>
 

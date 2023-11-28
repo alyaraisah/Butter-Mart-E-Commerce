@@ -110,6 +110,17 @@ a:focus {
 }
 
 /*header section*/
+
+.header_section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Set a z-index to ensure it's above other elements */
+  background-color: #fff; /* Add a background color if needed */
+  /* Other styles */
+}
+
 .hero_area {
   position: relative;
   min-height: 100vh;
@@ -547,7 +558,6 @@ color: #15304a;
   border: 1px solid #F3C06B;
   color: #2E68A2;
   font-weight: 500;
-  
   margin-left: 4px;
   width: 175px;
   height: 45px;
@@ -567,6 +577,15 @@ color: #15304a;
   border-radius: 30px;
   height: 45px;
   width: 70px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
+}
+
+.product_section .input1 {
+  margin-left: 30px;
+  border-radius: 20px;
+  width:55px;
+  height: 45px;
   justify-content: center; /* Center horizontally */
   align-items: center; 
 }

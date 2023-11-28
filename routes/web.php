@@ -63,6 +63,8 @@ route::get('/print_pdf/{id}',[AdminController::class,'print_pdf']);
 
 route::get('/search',[AdminController::class,'searchdata']);
 
+route::get('/search2',[AdminController::class,'searchdata2']);
+
 
 
 route::get('/product_details/{id}',[HomeController::class,'product_details']);
@@ -88,6 +90,10 @@ route::get('/product_search', [HomeController::class, 'product_search']);
 route::get('/products', [HomeController::class, 'product']);
 
 route::get('/products1', [HomeController::class, 'product1']);
+
+route::get('/contact', [HomeController::class, 'contact']);
+
+
 
 route::get('/category_bahankue', [HomeController::class, 'category_bahankue']);
 

@@ -167,110 +167,136 @@
         }
     </style>
 
-   <body>
-      <div>
+    <body>
+        <div class="header-showcart">
         <!-- header section strats -->
         @include('home.header')
         <!-- end header section -->
 
-        @if(session()->has('message'))
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            {{session()->get('message')}}
-        </div>
-        @endif
+            <div style="padding-top:100px;">
+                @if(session()->has('message'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
 
-            <div class="center">
-                <table class="cart-table">
-      
-                    <tr>
-                        <th>Nama Produk</th>
-                        <th>Kuantitas</th>
-                        <th>Harga</th>
-                        <th>Gambar</th>
-                        <th>Hapus</th>
-                    </tr>
-                
-                    <?php $totalprice = 0; ?>
-                    <?php $totalproduct=0;  ?>
-                        
-                    @if($cart->isEmpty()) 
+                <div class="center" style="margin-top:-20px;">
+                    <table class="cart-table">
+        
                         <tr>
-                            <td colspan="5">Keranjang Mu Kosong</td>
+                            <th>Nama Produk</th>
+                            <th>Kuantitas</th>
+                            <th>Harga</th>
+                            <th>Gambar</th>
+                            <th>Hapus</th>
                         </tr>
-                    @else 
-
-                    @foreach($cart as $cart)
-                        <tr>
-                            <td>{{$cart->product_title}}</td>
-                            <td>
-                                <form action="{{ route('update_cart', $cart->id) }}" method="POST">
-                                    @csrf
-                                    <div class="quantity-container">
-                                        <input type="hidden" name="title" value="{{ $cart->product_title }}">
-                                        <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
-                                        <button type="submit" class="btn btn-primary cart">Perbarui</button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>Rp{{$cart->price}}</td>
-                            <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
-                            <td>
-                                <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}">Hapus</a>
-                            </td>
-                        </tr>
-
-                    <?php $totalproduct++; ?>
-                    <?php $totalprice += $cart->price; ?> <!-- Update total price here -->
                     
-                    @endforeach
+                        <?php $totalprice = 0; ?>
+                        <?php $totalproduct=0;  ?>
+                            
+                        @if($cart->isEmpty()) 
+                            <tr>
+                                <td colspan="5">Keranjang Mu Kosong</td>
+                            </tr>
+                        @else 
 
+                        @foreach($cart as $cart)
+                            <tr>
+                                <td>{{$cart->product_title}}</td>
+                                <td>
+                                    <form action="{{ route('update_cart', $cart->id) }}" method="POST">
+                                        @csrf
+                                        <div class="quantity-container">
+                                            <input type="hidden" name="title" value="{{ $cart->product_title }}">
+                                            <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
+                                            <button type="submit" class="btn btn-primary cart">Perbarui</button>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>Rp{{$cart->price}}</td>
+                                <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
+                                <td>
+                                    <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}">Hapus</a>
+                                </td>
+                            </tr>
+
+                        <?php $totalproduct++; ?>
+                        <?php $totalprice += $cart->price; ?> <!-- Update total price here -->
                         
-                    @endif
+                        @endforeach
 
-                </table>
+                            
+                        @endif
 
-                <div class="cart-actions">
-                    <span>Harga Total: Rp{{$totalprice}}</span><br>
+                    </table>
+
+                    <div class="cart-actions">
+                        <span>Harga Total: Rp{{$totalprice}}</span><br>
+                    </div>
+
+
+                    <div class="button-container">
+                        <!--<h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>-->
+                        <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
+                        <a href="{{url('show_order')}}" class="btn btn-primary view-order-button">Lihat Pesanan</a>
+                    </div>
+
                 </div>
-
-
-                <div class="button-container">
-                    <!--<h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>-->
-                    <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
-                    <a href="{{url('show_order')}}" class="btn btn-primary view-order-button">Lihat Pesanan</a>
-                </div>
-
-
             </div>
         </div>
         
       
  
 
-      <div class="content-footer">
-         <p  class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
-         </p>
-      </div>
+        <div class="content-footer">
+            <p  class="mx-auto">© 2023 All Rights Reserved By <a>Butter Mart</a>         
+            </p>
+        </div>
 
-      <script>
-         document.addEventListener("DOMContentLoaded", function(event) { 
-               var scrollpos = localStorage.getItem('scrollpos');
-               if (scrollpos) window.scrollTo(0, scrollpos);
-         });
+        <script>
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });   
+            }
 
-         window.onbeforeunload = function(e) {
-               localStorage.setItem('scrollpos', window.scrollY);
-         };
-    </script>
+            function isScrolledIntoView(elem) {
+                var rect = elem.getBoundingClientRect();
+                var elemTop = rect.top;
+                var elemBottom = rect.bottom;
+
+                // Check if the element is at least partially visible
+                var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+                return isVisible;
+            }
+
+            document.addEventListener("DOMContentLoaded", function(event) { 
+                var scrollpos = localStorage.getItem('scrollpos');
+                if (scrollpos) window.scrollTo(0, scrollpos);
+
+                var alertMessage = document.querySelector('.alert-danger');
+                if (alertMessage) {
+                    scrollToTop();
+                }
+            });
+
+            window.onbeforeunload = function(e) {
+                localStorage.setItem('scrollpos', window.scrollY);
+        };
+
+        </script>
       
-      <!-- jQery -->
-      <script src="home/js/jquery-3.4.1.min.js"></script>
-      <!-- popper js -->
-      <script src="home/js/popper.min.js"></script>
-      <!-- bootstrap js -->
-      <script src="home/js/bootstrap.js"></script>
-      <!-- custom js -->
-      <script src="home/js/custom.js"></script>
+        <!-- jQery -->
+        <script src="home/js/jquery-3.4.1.min.js"></script>
+        <!-- popper js -->
+        <script src="home/js/popper.min.js"></script>
+        <!-- bootstrap js -->
+        <script src="home/js/bootstrap.js"></script>
+        <!-- custom js -->
+        <script src="home/js/custom.js"></script>
+
    </body>
 </html>

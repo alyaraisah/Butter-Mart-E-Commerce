@@ -67,20 +67,20 @@
             </div>
         @endif
 
-        <h2 class="font_size">All Products</h2>
+        <h2 class="font_size">Lihat Produk</h2>
 
         <table class="center">
 
             <tr class="th_color">
                 <th class="th_deg">No.</th>
-                <th class="th_deg">Product Title</th>
-                <th class="th_deg">Description</th>
-                <th class="th_deg">Quantity</th>
-                <th class="th_deg">Category</th>
-                <th class="th_deg">Price</th>
+                <th class="th_deg">Nama Produk</th>
+                <th class="th_deg">Deskripsi</th>
+                <th class="th_deg">Kuantitas</th>
+                <th class="th_deg">Kategori</th>
+                <th class="th_deg">Harga</th>
                 <!--<th class="th_deg">Discount Price</th>-->
-                <th class="th_deg">Product Image</th>
-                <th class="th_deg">Delete</th>
+                <th class="th_deg">Gambar</th>
+                <th class="th_deg">Hapus</th>
                 <th class="th_deg">Edit</th>
             </tr>
 
@@ -104,7 +104,7 @@
                     </div>
                 </td>
                 <td>
-                    <a class="btn btn-danger" onclick="return confirm('Are You Sure to Delete This')" href="{{url('delete_product', $product->id)}}">Delete</a>
+                    <a class="btn btn-danger" onclick="return confirm('Apakah Kamu Yakin ingin Mehapus Produk Ini?')" href="{{url('delete_product', $product->id)}}">Hapus</a>
                 </td>
                 <td>
                     <a class="btn btn-success" href="{{url('update_product', $product->id)}}">Edit</a>

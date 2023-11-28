@@ -66,13 +66,13 @@
     <div class="main-panel">
         <div class="content-wrapper">
             
-            <h1 class="title_deg">All Carts</h1>
+            <h1 class="title_deg">Semua Keranjang</h1>
 
             <div style="margin: auto; padding-top:25px; text-align:center;">
-                <form action="{{url('search')}}" method="get">
+                <form action="{{url('search2')}}" method="get">
                     @csrf
-                    <input type="text" name="search" id="" placeholder="Cari Apa?" style="color: black;">
-                    <input type="submit" value="Search" class="btn btn-outline-primary" id="">
+                    <input type="text" name="search2" id="" placeholder="Cari Apa?" style="color: black;">
+                    <input type="submit" value="Cari" class="btn btn-outline-primary" id="">
 
                 </form>
             </div>
@@ -90,7 +90,7 @@
                     <th>Kuantitas</th>
                     <th>Harga</th>
                     <th>Gambar</th>
-                    <th>Accepted</th>
+                    <th>Diterima</th>
                 </tr>
 
                 @foreach($carts as $cart)
@@ -107,7 +107,7 @@
                         <img style="width: 50px; display: block; margin: 0 auto;" src="/product/{{$cart->image}}" alt="">
                     </td>
                     <td>
-                        <a href="{{ route('cart.accept', $cart->id) }}" class="btn btn-primary accepted">Accepted</a>
+                        <a href="{{ route('cart.accept', $cart->id) }}" class="btn btn-primary accepted">Diterima</a>
                     </td>
 
 

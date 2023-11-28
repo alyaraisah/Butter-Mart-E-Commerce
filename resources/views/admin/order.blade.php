@@ -92,7 +92,7 @@
                     <th>Status Bayar</th>
                     <th>Status Kirim</th>
                     <th>Gambar</th>
-                    <th>Delivered</th>
+                    <th>Dikirim</th>
                     <th>Print PDF</th>
                 </tr>
 
@@ -114,9 +114,9 @@
 
                     <td>
                         @if($order->delivery_status=='processing')
-                        <a href="{{ url('delivered/' . $order->created_at . '/' . $order->user_id) }}" onclick="return confirm('Are You Sure to deliver these products?');" class="btn btn-primary delivered">Delivered</a>
+                        <a href="{{ url('delivered/' . $order->created_at . '/' . $order->user_id) }}" onclick="return confirm('Apakah Yakin Ingin Mengirim Produk Ini?');" class="btn btn-primary delivered">Dikirim</a>
                         @else
-                        <p style="color:#F3C06B">Delivered</p>
+                        <p style="color:#F3C06B">Terkirim</p>
                         @endif
                     </td>
 
@@ -134,17 +134,18 @@
                 <table class="table_deg">
 
                     <tr>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Product Title</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Payment Status</th>
-                        <th>Delivery Status</th>
-                        <th>Image</th>
-                        <th>Deliverd</th>
+                        <th>Alamat</th>
+                        <th>No.Hp</th>
+                        <th>Nama Produk</th>
+                        <th>Kuantitas</th>
+                        <th>Harga</th>
+                        <th>Status Bayar</th>
+                        <th>Status Kirim</th>
+                        <th>Gambar</th>
+                        <th>Dikirim</th>
+                        <th>Print PDF</th>
                     </tr>
 
                     <tr class="th_deg">
