@@ -71,6 +71,38 @@
             z-index: 100;
         }
 
+        .view-order-button {
+            margin-top: 25px;
+            margin-left: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            background-color: #007BFF; 
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; 
+        }
+
+        .view-order-button:hover {
+            background-color: #0056b3; 
+        }
+
+        @media (max-width: 767px) {
+            .center {
+                margin: auto;
+                width: 95%; /* Adjusted width to 95% */
+                text-align: center;
+                padding: 30px;
+                padding-bottom: 50px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 15px; /* Reduced margin between table and other elements */
+            }
+    }
+
     </style>
 
     <body>
@@ -80,6 +112,7 @@
             <!-- end header section -->
 
             <div class="center" style="padding-top:100px;">
+            <div class="table-responsive">
                 <table>
                     <tr>
                         <th>Nama Produk</th>
@@ -124,6 +157,11 @@
                     @endif
 
                 </table>
+            </div>
+
+                <div class="button-container">
+                    <a href="{{url('show_cart')}}" class="btn btn-primary view-order-button" style="margin-bottom: 35px;">Kembali</a>
+                </div>
             </div>
         </div>
          

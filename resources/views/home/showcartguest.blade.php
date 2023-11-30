@@ -203,12 +203,19 @@
                             </tr>
                         @else
                             @foreach($cart as $cartItem)
+                            @php
+                                $product = \App\Models\Product::find($cartItem['product_id']);
+                            @endphp
                                 <tr>
-                                    <td>{{ $cartItem['product_title'] }}</td>
+                                    <td>{{ $cartItem['product_title'] }} 
+                                    </td>
                                     <td>
                                         <form action="{{ route('update_cart', $cartItem['product_id']) }}" method="POST">
                                             @csrf
-                                            <div class="quantity-container">
+                                            <a style="font-size: 13px;">
+                                                Stok: {{ $product['quantity']}}
+                                            </a>
+                                            <div class="quantity-container" style="margin-top: -10px;">
                                                 <input type="hidden" name="title" value="{{ $cartItem['product_title'] }}">
                                                 <input type="number" name="quantity" value="{{ $cartItem['quantity'] }}" min="1" class="quantity-input">
                                                 <button type="submit" class="btn btn-primary cart" >Perbarui</button>
@@ -239,7 +246,7 @@
                 </div>
 
                 <div class="button-container">
-                    <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
+                    <a onclick="return confirm('Pastikan Pesananmu Sudah Sesuai dan Tidak Melebihi Stok!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
                 </div>
             </div>
         </div>

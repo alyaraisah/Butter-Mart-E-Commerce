@@ -21,7 +21,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $product = Product::paginate(12);
+        $product = Product::paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -50,7 +50,7 @@ class HomeController extends Controller
                 return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_delivered'));
             }
         } else {
-            $product = Product::paginate(12);
+            $product = Product::paginate(6);
             return view('home.userpage', compact('product'));
         }
     }
@@ -104,6 +104,9 @@ class HomeController extends Controller
                 $cart->image = $product->image;
                 $cart->product_id = $product->id;
                 $cart->quantity = $request->quantity;
+                $cart->product_quantity = $product->quantity;
+          
+
                 $cart->save();
                 return redirect()->back();
             }
@@ -158,6 +161,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             $cart = Cart::where('user_id', '=', $id)->get();
+     
             return view('home.showcart', compact('cart'));
         } else {
             $cartFromCookies = request()->cookie('cart_item');
@@ -170,6 +174,8 @@ class HomeController extends Controller
             return view('home.showcartguest', compact('cart'));
         }
     }
+
+    
 
     public function remove_cart($id)
     {
@@ -428,7 +434,7 @@ class HomeController extends Controller
     public function product_search(Request $request)
     {
         $search_text = $request->search;
-        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(12);
+        $product = product::where('title', 'LIKE', '%' . $search_text . '%')->orwhere('category', 'LIKE', '%' . $search_text . '%')->paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -440,7 +446,7 @@ class HomeController extends Controller
 
     public function product1()
     {
-        $product = Product::paginate(12);
+        $product = Product::paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -454,7 +460,7 @@ class HomeController extends Controller
     public function category_bahankue1()
     {
         $category = 'bahan kue'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -468,7 +474,7 @@ class HomeController extends Controller
     public function category_bumbudapur1()
     {
         $category = 'bumbu dapur'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -482,7 +488,7 @@ class HomeController extends Controller
     public function category_peralatandapur1()
     {
         $category = 'peralatan dapur'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -496,7 +502,7 @@ class HomeController extends Controller
     public function category_plastik1()
     {
         $category = 'plastik'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(6);
         return view('home.userpage', compact('product'));
     }
 
@@ -510,7 +516,7 @@ class HomeController extends Controller
     public function category_aksesoris1()
     {
         $category = 'aksesoris'; // Set the category you want to display
-        $product = Product::where('category', $category)->paginate(12);
+        $product = Product::where('category', $category)->paginate(6);
         return view('home.userpage', compact('product'));
     }
 

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('Product_id')->nullable();
             $table->string('user_id')->nullable();
+            $table->unsignedInteger('product_quantity')->nullable();
+            $table->foreign('Product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

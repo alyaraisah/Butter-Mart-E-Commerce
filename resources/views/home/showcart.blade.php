@@ -165,6 +165,22 @@
         .view-order-button:hover {
             background-color: #0056b3; 
         }
+
+        @media (max-width: 767px) {
+        .center {
+            margin: auto;
+            width: 95%; /* Adjusted width to 95% */
+            text-align: center;
+            padding: 30px;
+            padding-bottom: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px; /* Reduced margin between table and other elements */
+        }
+    }
     </style>
 
     <body>
@@ -182,63 +198,72 @@
                 @endif
 
                 <div class="center" style="margin-top:-20px;">
-                    <table class="cart-table">
-        
-                        <tr>
-                            <th>Nama Produk</th>
-                            <th>Kuantitas</th>
-                            <th>Harga</th>
-                            <th>Gambar</th>
-                            <th>Hapus</th>
-                        </tr>
-                    
-                        <?php $totalprice = 0; ?>
-                        <?php $totalproduct=0;  ?>
-                            
-                        @if($cart->isEmpty()) 
-                            <tr>
-                                <td colspan="5">Keranjang Mu Kosong</td>
-                            </tr>
-                        @else 
-
-                        @foreach($cart as $cart)
-                            <tr>
-                                <td>{{$cart->product_title}}</td>
-                                <td>
-                                    <form action="{{ route('update_cart', $cart->id) }}" method="POST">
-                                        @csrf
-                                        <div class="quantity-container">
-                                            <input type="hidden" name="title" value="{{ $cart->product_title }}">
-                                            <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
-                                            <button type="submit" class="btn btn-primary cart">Perbarui</button>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td>Rp{{$cart->price}}</td>
-                                <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
-                                <td>
-                                    <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}">Hapus</a>
-                                </td>
-                            </tr>
-
-                        <?php $totalproduct++; ?>
-                        <?php $totalprice += $cart->price; ?> <!-- Update total price here -->
+                    <div class="table-responsive">
+                        <table class="cart-table">
                         
-                        @endforeach
+                            <tr>
+                                <th>Nama Produk</th>
+                                <th>Kuantitas</th>
+                                <th>Harga</th>
+                                <th>Gambar</th>
+                                <th>Hapus</th>
+                            </tr>
+                        
+                            <?php $totalprice = 0; ?>
+                            <?php $totalproduct=0;  ?>
+                                
+                            @if($cart->isEmpty()) 
+                                <tr>
+                                    <td colspan="5">Keranjang Mu Kosong</td>
+                                </tr>
+                            @else 
 
+                            @foreach($cart as $cart)
                             
-                        @endif
+                                <tr>
 
+                                <tr>
+                                    <td>{{$cart->product_title}}
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('update_cart', $cart->id) }}" method="POST">
+                                            @csrf
+                                            <a style="font-size: 13px;">
+                                            Stok: {{ $cart-> product_quantity}}
+                                                </a>
+                                            <div class="quantity-container" style="margin-top: -10px;">
+                                                <input type="hidden" name="title" value="{{ $cart->product_title }}">
+                                                <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" class="quantity-input">
+                                                <button type="submit" class="btn btn-primary cart">Perbarui</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td>Rp{{$cart->price}}</td>
+                                    <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
+                                    <td>
+                                        <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}">Hapus</a>
+                                    </td>
+                                </tr>
+
+                            <?php $totalproduct++; ?>
+                            <?php $totalprice += $cart->price; ?> <!-- Update total price here -->
+                            
+                            @endforeach
+
+                                
+                            @endif
+                        
                     </table>
+                </div>
 
-                    <div class="cart-actions">
+                    <div class="cart-actions" style="margin-top: 30px;">
                         <span>Harga Total: Rp{{$totalprice}}</span><br>
                     </div>
 
 
                     <div class="button-container">
                         <!--<h1 style="font-family: 'Montserrat'; font-size:18px; font-weight:600; padding-top:19px; padding-bottom:15px;">Proceed to Order</h1>-->
-                        <a onclick="return confirm('Pastikan Pesananmu Telah Sesuai!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
+                        <a onclick="return confirm('Pastikan Pesananmu Sudah Sesuai dan Tidak Melebihi Stok!')" href="{{ url('cash_order', $totalproduct) }}" target="_blank" class="btn btn-danger order-button">Pesan</a>
                         <a href="{{url('show_order')}}" class="btn btn-primary view-order-button">Lihat Pesanan</a>
                     </div>
 

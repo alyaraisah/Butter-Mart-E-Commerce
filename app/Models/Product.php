@@ -19,4 +19,8 @@ class Product extends Model
             'created_at',
             'updated_at',
         ];
+        public function carts()
+        {
+            return $this->hasMany(Cart::class, 'Product_id', 'id');
+        }
 }

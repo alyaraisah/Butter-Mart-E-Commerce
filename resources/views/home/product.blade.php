@@ -131,6 +131,9 @@
                                     <!-- Price <br>-->
                                     Rp{{ $products->price }}
                                 </h6>
+                                <h6>
+                                    Stok: {{ $products->quantity }}
+                                </h6>
                             @endif
 
 
@@ -179,6 +182,9 @@
                             @else
                                 <h6>
                                     Rp{{ $products->price }}
+                                </h6>
+                                <h6>
+                                    Stok: {{ $products->quantity }}
                                 </h6>
                             @endif
                         </div>
