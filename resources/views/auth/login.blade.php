@@ -1,17 +1,19 @@
 <x-guest-layout>
     <x-authentication-card>
+        <!-- Bagian Form Masuk -->
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-
+        <!-- Menampilkan pesan sukses reset kata sandi -->
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ __('Kata Sandi Anda telah Di Reset') }}
             </div>
         @endif
 
+        <!-- Form untuk masuk -->
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -32,6 +34,7 @@
                 </label>
             </div>
 
+            <!-- Link lupa kata sandi -->
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
@@ -39,11 +42,12 @@
                     </a>
                 @endif
 
+                <!-- Link untuk mendaftar -->
                 <a class="ml-4 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
                 {{ __('Daftar') }}
                 </a>
 
-
+                <!-- Tombol untuk masuk -->
                 <x-button class="ml-4">
                     {{ __('Masuk') }}
                 </x-button>

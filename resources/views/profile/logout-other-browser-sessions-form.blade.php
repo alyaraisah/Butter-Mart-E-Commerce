@@ -53,7 +53,7 @@
 
         <div class="flex items-center mt-5">
             <x-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Log Out Other Browser Sessions') }}
+                {{ __('Keluar dari Sesi Browser Lainnya') }}
             </x-button>
 
             <x-action-message class="ml-3" on="loggedOut">
@@ -68,7 +68,7 @@
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Silakan masukkan kata sandi Anda untuk mengonfirmasi bahwa Anda ingin keluar dari sesi browser lainnya di semua perangkat Anda.') }}
+                {{ __('Silakan masukkan kata sandi Anda untuk mengkonfirmasi bahwa Anda ingin keluar dari sesi browser lainnya di semua perangkat Anda.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-input type="password" class="mt-1 block w-3/4"

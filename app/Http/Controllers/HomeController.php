@@ -25,8 +25,6 @@ class HomeController extends Controller
         return view('home.userpage', compact('product'));
     }
 
-    
-
     public function redirect()
     {
         // You can remove the Auth::check() condition
@@ -55,7 +53,6 @@ class HomeController extends Controller
         }
     }
 
-
     public function product_details($id)
     {
         $product = product::find($id);
@@ -69,7 +66,9 @@ class HomeController extends Controller
             $message = 'Produk ' . $product->title . ' sisa ' . $product->quantity;
             return redirect()->back()->with('message', $message);
         }
-        
+
+        //Memasukkan produk ke keranjang dengan menambahkan data produk dan 
+        //user ke database (kondisi user login)
         if (Auth::id()) {
             $user = Auth::user();
             $userid = $user->id;
@@ -110,7 +109,11 @@ class HomeController extends Controller
                 $cart->save();
                 return redirect()->back();
             }
-        } else {
+        } 
+
+        //Memasukkan produk ke keranjang dengan menambahkan data produk dan 
+        //user ke database (kondisi user nonlogin)
+        else {
             $product = Product::find($id);
             $cartItem = [
                 'product_id' => $product->id,
@@ -175,36 +178,37 @@ class HomeController extends Controller
         }
     }
 
-    
-
-    public function remove_cart($id)
-    {
-        if(Auth::id()){
-            $cart = Cart::find($id);
-            $cart->delete();
-            return redirect()->back();
-        }else{
-            $cartFromCookies = request()->cookie('cart_item');
-            $cartArray = [];
-
-            if ($cartFromCookies) {
-                $cartArray = json_decode($cartFromCookies, true);
-
-                foreach ($cartArray as $index => $cartItem) {
-                    if ($cartItem['product_id'] == $id) {
-                        unset($cartArray[$index]);
-
-                        return redirect()->back()->withCookie(cookie()->forever('cart_item', json_encode($cartArray)));
-                    }
-                }
+    public function remove_cart($id) {
+        // Jika pengguna sudah login
+        if (Auth::id()) {
+          $cart = Cart::find($id);
+          $cart->delete();
+          return redirect()->back();
+        } else {
+          // Jika pengguna tidak login
+          $cartFromCookies = request()->cookie('cart_item');
+          $cartArray = [];
+      
+          if ($cartFromCookies) {
+            $cartArray = json_decode($cartFromCookies, true);
+      
+            foreach ($cartArray as $index => $cartItem) {
+              if ($cartItem['product_id'] == $id) {
+                unset($cartArray[$index]);
+                // Menghapus item di keranjang yang disimpan dalam cookies
+                return redirect()->back()->withCookie(cookie()->forever
+                ('cart_item', json_encode($cartArray)));
+              }
             }
-
-            return redirect()->back();
+          }
+          return redirect()->back();
         }
-    }
+      }
+      
 
     public function update_cart(Request $request, $id)
     {
+        // Jika pengguna sudah login
         if (Auth::id()) {
             $user = Auth::user();
             $cart = Cart::find($id);
@@ -212,11 +216,14 @@ class HomeController extends Controller
             if (!$cart) {
                 return redirect()->back();
             }
+            // Mencari informasi produk berdasarkan nama
             $product = Product::where('title', $request->title)->first();
+            // Memeriksa jumlah stok produk untuk memicu alert jika kuantitas > produk
             if ($product->quantity < $request->input('quantity')) {
                 $message = 'Produk ' . $product->title . ' sisa ' . $product->quantity;
                 return redirect()->back()->with('message', $message);
             } else {
+                // Mengupdate jumlah produk di keranjang
                 $cart->quantity = $request->input('quantity');
                 $cart->save();
 
@@ -225,7 +232,7 @@ class HomeController extends Controller
                 if (!$product) {
                     return redirect()->back();
                 }
-
+                // Menghitung ulang harga setelah mengubah jumlah produk
                 if ($product->discount_price != null) {
                     $cart->price = $product->discount_price * $cart->quantity;
                 } else {
@@ -236,6 +243,7 @@ class HomeController extends Controller
                 return redirect()->back();
             }
         } else {
+            // Jika pengguna tidak login
             $cartFromCookies = request()->cookie('cart_item');
             $cartArray = [];
 
@@ -309,69 +317,75 @@ class HomeController extends Controller
 
     public function cash_order($totalproduct)
     {
+        // Jika tidak ada produk yang ditambahkan
         if ($totalproduct == 0) {
-            return redirect()->back()->with('message', 'Please add some products');
+            return redirect()->back()->with('message', 'Silakan tambahkan beberapa produk');
         }
-
+    
+        // Jika pengguna sudah login
         if (Auth::id()) {
             $user = Auth::user();
             $userid = $user->id;
             $carts = Cart::where('user_id', '=', $userid)->get();
-
+    
             $message = '';
             $total = 0;
             $numbering = 1;
-
+    
+            // Pesan yang akan dikirim melalui WhatsApp
             $message .= 'Berikut ini produk yang kamu beli:';
             $message .= "\n";
             $product_nama = "";
             foreach ($carts as $cart) {
+                // Mendapatkan informasi produk
                 $product_title = $cart->product_title;
                 $quantity = $cart->quantity;
-                // dd($cart);
                 $product = Product::where('title', $product_title)->first();
                 $price = $product->price;
+    
+                // Mendapatkan informasi pengguna
                 $user_pesan = User::where('id', $userid)->first();
                 $user_name = $user_pesan->name;
                 $user_email = $user_pesan->email;
                 $user_phone = $user_pesan->phone;
                 $user_address = $user_pesan->address;
-                //$product->update(['quantity' => $product->quantity - $cart->quantity]);
-
+    
                 $subtotal = $price * $quantity;
                 $total += $subtotal;
-
+    
+                // Menambahkan detail produk ke dalam pesan
                 $message .= $numbering . '. ' . $product_title . ', ' . $quantity . ' x ' . $price;
-                $message .= "\n"; // This adds a newline character
-                // dd($user_pesan);
+                $message .= "\n";
                 $numbering++;
-                $product_nama .= $cart->product_title;
-                $order = Order::create([
-                    'user_id' => $userid,
-                    'product_title' => $product_title,
-                    'price' => $price,
-                    'quantity' => $quantity,
-                    'image' => $cart->image,
-                    'product_id' => $cart->Product_id,
-                    'payment_status' => 'Paid',
-                    'delivery_status' => 'Delivered',
-                    'name' => $user_name,
-                    'email' => $user_email,
-                    'phone' => $user_phone,
-                    'address' => $user_address,
-                ]);
-
+    
+                // Menyimpan detail pesanan ke dalam database
+                //$order = Order::create([
+                    //'user_id' => $userid,
+                    //'product_title' => $product_title,
+                    //'price' => $price,
+                    //'quantity' => $quantity,
+                    //'image' => $cart->image,
+                    //'product_id' => $cart->Product_id,
+                    //'payment_status' => 'Paid',
+                    //'delivery_status' => 'Delivered',
+                    //'name' => $user_name,
+                    //'email' => $user_email,
+                    //'phone' => $user_phone,
+                    //'address' => $user_address,
+                //]);
             }
-
+    
+            // Menambahkan total pembayaran ke dalam pesan
             $message .= "\n";
             $message .= 'Total Pembayaranmu: IDR ' . number_format($total, 0, ',', ',');
             $message .= "\n";
             $message .= 'Silahkan Kirim Pesan Ini!';
-            //Cart::where('user_id', Auth::id())->delete();
+    
+            // Redirect ke WhatsApp dengan pesan yang sudah disiapkan
             $adminNumber = env('WHATSAPP_ADMIN_NUMBER');
             return redirect('https://wa.me/6285888273995?text=' . urlencode($message));
-        }else {
-            // Pengguna tidak login, handle keranjang belanja dalam cookies
+        } else {
+            // Jika pengguna tidak login, handle keranjang belanja dalam cookies
             $cartFromCookies = request()->cookie('cart_item');
             $cartArray = json_decode($cartFromCookies, true);
     
@@ -390,23 +404,26 @@ class HomeController extends Controller
                     $subtotal = $price * $quantity;
                     $total += $subtotal;
     
+                    // Menambahkan detail produk ke dalam pesan
                     $message .= $numbering . '. ' . $product_title . ', ' . $quantity . ' x ' . $price;
                     $message .= "\n";
                     $numbering++;
                 }
     
+                // Menambahkan total pembayaran ke dalam pesan
                 $message .= "\n";
                 $message .= 'Total Pembayaranmu: IDR ' . number_format($total, 0, ',', ',');
                 $message .= "\n";
                 $message .= 'Silahkan Kirim Pesan Ini!';
-                //Cookie::queue(Cookie::forget('cart_item'));
-                // Hapus keranjang belanja dalam cookies
+    
+                // Redirect ke WhatsApp dengan pesan yang sudah disiapkan
                 return redirect('https://wa.me/6285888273995?text=' . urlencode($message));
             } else {
                 return redirect()->back()->with('message', 'Keranjang Mu Kosong');
             }
         }
     }
+    
 
 
     public function show_order()

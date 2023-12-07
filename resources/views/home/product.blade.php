@@ -135,8 +135,8 @@
                                     Stok: {{ $products->quantity }}
                                 </h6>
                             @endif
-
-
+                        </div>
+                        <div class="detail-box">
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                {{ strlen($products->title) > 14 ? substr($products->title, 0, 14) . '...' : $products->title }}
+                                {{ strlen($products->title) > 11 ? substr($products->title, 0, 11) . '...' : $products->title }}
                             </h5>
                         </div>
                         <div class="detail-box">
@@ -183,10 +183,12 @@
                                 <h6>
                                     Rp{{ $products->price }}
                                 </h6>
-                                <h6>
-                                    Stok: {{ $products->quantity }}
-                                </h6>
                             @endif
+                        </div>
+                        <div class="detail-box">
+                            <h6 style="font-size: 13px; margin-top:-2px;">
+                                Stok: {{ $products->quantity }}
+                            </h6>
                         </div>
                     </div>
                 </div>

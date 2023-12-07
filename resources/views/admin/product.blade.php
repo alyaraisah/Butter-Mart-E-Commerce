@@ -56,6 +56,16 @@
         .div_design input[type="submit"] {
             border: 2px solid gray; 
         }
+        
+        .desc{
+            margin-left: -100px;
+        }
+        
+        @media (max-width: 767px) {
+        .desc{
+            margin-left: -100px;
+        }
+    }
     </style>
 
   </head>
@@ -85,17 +95,17 @@
                 @csrf
 
                 <div class="div_design">
-                    <label for="">Nama Produk :</label>
+                    <label style="margin-left: -100px;" for="">Nama Produk :</label>
                     <input class="text_color" type="text" name="title" placeholder="Write a title" required="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Deskripsi Produk :</label>
+                    <label style="margin-left: -100px;" for="">Deskripsi Produk :</label>
                     <input class="text_color" type="text" name="description" placeholder="Write a description" required="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Harga :</label>
+                    <label style="margin-left: -100px;" for="">Harga :</label>
                     <input class="text_color" type="number" name="price" placeholder="Write a price" required="">
                 </div>
 
@@ -105,14 +115,14 @@
                 </div>-->
 
                 <div class="div_design">
-                    <label for="">Kuantitas :</label>
+                    <label style="margin-left: -100px;" for="">Kuantitas :</label>
                     <input class="text_color" type="number" min="0" name="quantity" placeholder="Write a quantity" required="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Kategori :</label>
+                    <label style="margin-left: -100px;" for="">Kategori :</label>
                     <select class="text_color" name="category" required="">
-                        <option value="" >Add a category here</option>
+                        <option value="" >Tambah Kategori</option>
                         
                         @foreach($category as $category)
 
@@ -124,7 +134,7 @@
                 </div>
 
                 <div class="div_design">
-                    <label for="">Gambar :</label>
+                    <label style="margin-left: -100px;" for="">Gambar :</label>
                     <input type="file" name="image" required="">
                 </div>
 

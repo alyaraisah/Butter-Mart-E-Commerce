@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
   @include('admin.css')
+  <link rel="shortcut icon" href="/images/favicon.png" type="">
+
   </head>
   <body>
     <div class="container-scroller">

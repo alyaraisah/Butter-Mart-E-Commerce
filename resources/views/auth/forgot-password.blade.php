@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-authentication-card>
+        <!-- Bagian Konten Lupa Kata Sandi -->
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
@@ -8,14 +9,17 @@
             {{ __('Lupa kata sandi? Tidak masalah. Silakan berikan alamat email Anda dan kami akan mengirimkan tautan reset kata sandi agar Anda dapat membuat kata sandi baru.') }}
         </div>
 
+        <!-- Menampilkan Pesan Sukses Email Terkirim -->
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ __('Email sudah dikirim! Silakan periksa kotak masuk atau folder spam untuk tautan reset kata sandi.') }}
             </div>
         @endif
 
+        <!-- Menampilkan Pesan Error Validation -->
         <x-validation-errors class="mb-4" />
-
+        
+        <!-- Form Reset Password -->        
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
 

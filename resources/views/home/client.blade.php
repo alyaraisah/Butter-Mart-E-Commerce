@@ -2,7 +2,7 @@
          <div class="container">
             <div class="heading_container heading_center">
                <h2>
-                  Testimoni 
+                  Customer's Testimonial
                </h2>
             </div>
             <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
@@ -18,13 +18,13 @@
                         </div>
                         <div class="detail-box">
                            <h5>
-                              Irmawati
+                              Anna Trevor
                            </h5>
                            <h6>
-                              Pelanggan Butter Mart
+                              Customer
                            </h6>
                            <p>
-                              Sekarang sangat mudah untuk mencari produk di Butter Mart, bisa langsung diantarkan juga ke rumah, enak banget belanja kebutuhan dapur cuman sambil duduk aja!
+                              Dignissimos reprehenderit repellendus nobis error quibusdam? Atque animi sint unde quis reprehenderit, et, perspiciatis, debitis totam est deserunt eius officiis ipsum ducimus ad labore modi voluptatibus accusantium sapiente nam! Quaerat.
                            </p>
                         </div>
                      </div>

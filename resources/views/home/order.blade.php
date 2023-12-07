@@ -115,12 +115,13 @@
             <div class="table-responsive">
                 <table>
                     <tr>
+                        <th>Tanggal Pembelian</th>
+                        <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Kuantitas</th>
                         <th>Harga</th>
                         <th>Status Bayar</th>
                         <th>Status Kirim</th>
-                        <th>Gambar</th>
                         <!--<th>Batalkan Pesanan</th>-->
                     </tr>
 
@@ -132,15 +133,15 @@
 
                         @foreach($order as $order)
                         <tr>
+                            <td>{{$order->created_at}}</td>
+                            <td>
+                                <img style="width: 55px;" src="product/{{$order->image}}" alt="">
+                            </td>
                             <td>{{$order->product_title}}</td>
                             <td>{{$order->quantity}}</td>
                             <td>{{$order->price}}</td>
                             <td>{{$order->payment_status}}</td>
-                            <td>{{$order->delivery_status}}</td>
-                            <td>
-                                <img style="width: 55px;" src="product/{{$order->image}}" alt="">
-                            </td>
-
+                            <td>{{$order->delivery_status}}</td>                     
                             <!--<td>
                                 @if($order->delivery_status=='processing')
                                 <a onclick="return confirm ('Yakin membatalkan pesanan ini?')" class="btn btn-danger" href="{{ url('cancel_order', $order->id) }}">Batalkan</a>

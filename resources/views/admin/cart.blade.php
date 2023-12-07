@@ -63,85 +63,86 @@
 
     @include('admin.header')
 
-    <div class="main-panel">
-        <div class="content-wrapper">
-            
-            <h1 class="title_deg">Semua Keranjang</h1>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                
+                <h1 class="title_deg">Semua Keranjang</h1>
 
-            <div style="margin: auto; padding-top:25px; text-align:center;">
-                <form action="{{url('search2')}}" method="get">
-                    @csrf
-                    <input type="text" name="search2" id="" placeholder="Cari Apa?" style="color: black;">
-                    <input type="submit" value="Cari" class="btn btn-outline-primary" id="">
+                <div style="margin: auto; padding-top:25px; text-align:center;">
+                    <form action="{{url('search2')}}" method="get">
+                        @csrf
+                        <input type="text" name="search2" id="" placeholder="Cari Apa?" style="color: black;">
+                        <input type="submit" value="Cari" class="btn btn-outline-primary" id="">
 
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <div class="table-container">
-            @if($carts !== null && count($carts) > 0)
-                <table class="table_deg">
-
-                <tr>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Alamat</th>
-                    <th>No.Hp</th>
-                    <th>Nama Produk</th>
-                    <th>Kuantitas</th>
-                    <th>Harga</th>
-                    <th>Gambar</th>
-                    <th>Diterima</th>
-                </tr>
-
-                @foreach($carts as $cart)
-
-                <tr class="th_deg">
-                    <td>{{$cart->name}}</td>
-                    <td>{{$cart->email}}</td>
-                    <td>{{$cart->address}}</td>
-                    <td>{{$cart->phone}}</td>
-                    <td>{{$cart->product_title}}</td>
-                    <td>{{$cart->quantity}}</td>
-                    <td>{{$cart->price}}</td>
-                    <td style="text-align: center; vertical-align: middle;">
-                        <img style="width: 50px; display: block; margin: 0 auto;" src="/product/{{$cart->image}}" alt="">
-                    </td>
-                    <td>
-                        <a href="{{ route('cart.accept', $cart->id) }}" class="btn btn-primary accepted">Diterima</a>
-                    </td>
-
-
-                </tr>
-
-                @endforeach
-
-                </table>
-
-            @else
-                <table class="table_deg">
+                <div class="table-container">
+                @if($carts !== null && count($carts) > 0)
+                    <table class="table_deg">
 
                     <tr>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Product Title</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Image</th>
-                        <th>Deliverd</th>
+                        <th>Alamat</th>
+                        <th>No.Hp</th>
+                        <th>Nama Produk</th>
+                        <th>Kuantitas</th>
+                        <th>Harga</th>
+                        <th>Gambar</th>
+                        <th>Diterima</th>
                     </tr>
+
+                    @foreach($carts as $cart)
 
                     <tr class="th_deg">
-                        <td colspan="11" style="text-align: center; padding:10px;">
-                            @if(count($carts) === 0)
-                                Belum ada order
-                            @endif
+                        <td>{{$cart->name}}</td>
+                        <td>{{$cart->email}}</td>
+                        <td>{{$cart->address}}</td>
+                        <td>{{$cart->phone}}</td>
+                        <td>{{$cart->product_title}}</td>
+                        <td>{{$cart->quantity}}</td>
+                        <td>{{$cart->price}}</td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <img style="width: 50px; display: block; margin: 0 auto;" src="/product/{{$cart->image}}" alt="">
                         </td>
-                    </tr>
-                </table>
+                        <td>
+                            <a href="{{ route('cart.accept', $cart->id) }}" class="btn btn-primary accepted">Diterima</a>
+                        </td>
 
-            @endif
+
+                    </tr>
+
+                    @endforeach
+
+                    </table>
+
+                @else
+                    <table class="table_deg">
+
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Product Title</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Deliverd</th>
+                        </tr>
+
+                        <tr class="th_deg">
+                            <td colspan="11" style="text-align: center; padding:10px;">
+                                @if(count($carts) === 0)
+                                    Belum ada order
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+
+                @endif
+                </div>
             </div>
         </div>
     </div>

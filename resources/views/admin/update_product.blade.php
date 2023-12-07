@@ -86,17 +86,17 @@
                 @csrf
 
                 <div class="div_design">
-                    <label for="">Nama Produk :</label>
+                    <label style="margin-left: -100px;" for="">Nama Produk :</label>
                     <input class="text_color" type="text" name="title" placeholder="Write a title" required="" value="{{$product->title}}">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Deskripsi Produk :</label>
+                    <label style="margin-left: -100px;" for="">Deskripsi Produk :</label>
                     <input class="text_color" type="text" name="description" placeholder="Write a description" required="" value="{{$product->description}}">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Harga :</label>
+                    <label style="margin-left: -100px;" for="">Harga :</label>
                     <input class="text_color" type="number" name="price" placeholder="Write a price" required="" value="{{$product->price}}">
                 </div>
 
@@ -106,12 +106,12 @@
                 </div>-->
 
                 <div class="div_design">
-                    <label for="">Kuantitas :</label>
+                    <label style="margin-left: -100px;" for="">Kuantitas :</label>
                     <input class="text_color" type="number" min="0" name="quantity" placeholder="Write a quantity" required="" value="{{$product->quantity}}">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Kategori :</label>
+                    <label style="margin-left: -100px;" for="">Kategori :</label>
                     <select class="text_color" name="category" required="">
                         <option value="{{$product->category}}">{{$product->category}}</option>
                         
@@ -123,12 +123,12 @@
                 </div>
 
                 <div class="div_design">
-                    <label for="">Gambar Produk Sekarang :</label>
+                    <label  for="">Gambar Produk Sekarang :</label>
                     <img style="margin:auto;" height="100" width="100" src="/product/{{$product->image}}" alt="">
                 </div>
 
                 <div class="div_design">
-                    <label for="">Ubah Gambar Produk :</label>
+                    <label style="margin-left: -100px;" for="">Ubah Gambar Produk :</label>
                     <input type="file" name="image">
                 </div>
 

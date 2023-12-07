@@ -35,28 +35,28 @@
 
 
         @media (max-width: 767px) {
-            .product_section.layout_padding .container .row .col-sm-6 {
-                width: 50% !important;
-                box-sizing: border-box;
-                padding: 0 5px;
-            }
-            .product_section.layout_padding .container .row .col-sm-6 .box {
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-            .product_section.layout_padding .container .row .col-sm-6 .detail-box {
-                text-align: center;
-            }
-            .product_section.layout_padding .container .row .col-sm-6 .detail-box h5,
-            .product_section.layout_padding .container .row .col-sm-6 .detail-box h6 {
-                margin: 5px 0;
-            }
-            .product_section.layout_padding .container .row .col-sm-6 .img-box img {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                margin: 0 auto;
-            }
+        .product_section.layout_padding .container .row .col-sm-6 {
+            width: 50% !important;
+            box-sizing: border-box;
+            padding: 0 5px;
+        }
+        .product_section.layout_padding .container .row .col-sm-6 .box {
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .product_section.layout_padding .container .row .col-sm-6 .detail-box {
+            text-align: center;
+        }
+        .product_section.layout_padding .container .row .col-sm-6 .detail-box h5,
+        .product_section.layout_padding .container .row .col-sm-6 .detail-box h6 {
+            margin: 5px 0;
+        }
+        .product_section.layout_padding .container .row .col-sm-6 .img-box img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
 
         }
 
@@ -95,7 +95,6 @@
                         <!-- Category buttons -->
                         <div class="container">
                             <div class="row category-buttons">
-                                <!-- Category links -->
                                 <div class="col-lg-2 col-md-4 col-6 mb-2">
                                     <a href="{{ url('products') }}" class="category-button">Semua</a>
                                 </div>
@@ -129,9 +128,11 @@
                                 <div class="box">
                                     <div class="option_container">
                                         <div class="options">
+                                            <!-- Tombol Detail produk -->
                                             <a href="{{ url('product_details', $products->id) }}" class="option1">
                                                 Detail Produk
                                             </a>
+                                            <!-- Input Kuantitas & Tombol Tambah Keranjang -->
                                             <form action="{{ url('add_cart', $products->id) }}" method="Post"
                                                 class="product_section form">
                                                 @csrf
@@ -174,6 +175,9 @@
                                                 <!-- Price <br>-->
                                                 Rp{{ $products->price }}
                                             </h6>
+                                            <h6>
+                                                Stok: {{ $products->quantity }}
+                                            </h6>
                                         @endif
                                     </div>
                                 </div>
@@ -205,7 +209,7 @@
                                     </div>
                                     <div class="detail-box">
                                         <h5>
-                                            {{ strlen($products->title) > 15 ? substr($products->title, 0, 14) . '...' : $products->title }}
+                                            {{ strlen($products->title) > 11 ? substr($products->title, 0, 11) . '...' : $products->title }}
                                         </h5>
                                     </div>
                                     <div class="detail-box">
@@ -223,6 +227,11 @@
                                                 Rp{{ $products->price }}
                                             </h6>
                                         @endif
+                                    </div>
+                                    <div class="detail-box">
+                                        <h6 style="font-size: 13px; margin-top:-2px;">
+                                            Stok: {{ $products->quantity }}
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

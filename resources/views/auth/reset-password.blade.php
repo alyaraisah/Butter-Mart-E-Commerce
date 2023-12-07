@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-authentication-card>
+        <!-- Formulir untuk reset kata sandi -->
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>

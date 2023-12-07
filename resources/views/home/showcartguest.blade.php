@@ -96,7 +96,7 @@
         align-items: center;
         justify-content: center;
         font-size: 15px;
-        width: 70px;
+        width: 40px;
         margin: auto;
     }
 
@@ -189,10 +189,10 @@
                 <div class="table-responsive">
                     <table class="cart-table">
                         <tr>
+                            <th>Gambar</th>
                             <th>Nama Produk</th>
                             <th>Kuantitas</th>
                             <th>Harga</th>
-                            <th>Gambar</th>
                             <th>Hapus</th>
                         </tr>
                         <?php $totalprice = 0; ?>
@@ -207,6 +207,7 @@
                                 $product = \App\Models\Product::find($cartItem['product_id']);
                             @endphp
                                 <tr>
+                                    <td style="width: 55px;"><img class="w-100" src="/product/{{ $cartItem['image'] }}"></td>
                                     <td>{{ $cartItem['product_title'] }} 
                                     </td>
                                     <td>
@@ -223,9 +224,8 @@
                                         </form>
                                     </td>
                                     <td>Rp{{ $cartItem['price'] }}</td>
-                                    <td style="width: 55px;"><img class="w-100" src="/product/{{ $cartItem['image'] }}"></td>
                                     <td>
-                                        <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{ url('/remove_cart', $cartItem['product_id']) }}">Hapus</a>
+                                        <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{ url('/remove_cart', $cartItem['product_id']) }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @php
@@ -241,7 +241,7 @@
                     <span>Harga Total: Rp{{ $totalprice }}</span><br>
                 </div>
 
-                <div class="cart-actions d-md-none" style="margin-top: 30px;">
+                <div class="cart-actions d-md-none" style="margin-top: 20px;">
                     <span>Harga Total: Rp{{ $totalprice }}</span><br>
                 </div>
 

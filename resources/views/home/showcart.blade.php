@@ -109,7 +109,7 @@
             align-items: center;
             justify-content: center;
             font-size: 15px;
-            width: 70px;
+            width: 40px;
             margin: auto;
         }
 
@@ -190,6 +190,7 @@
         <!-- end header section -->
 
             <div style="padding-top:100px;">
+                <!-- alert message -->
                 @if(session()->has('message'))
                     <div class="alert alert-danger">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
@@ -202,16 +203,17 @@
                         <table class="cart-table">
                         
                             <tr>
+                                <th>Gambar</th>
                                 <th>Nama Produk</th>
                                 <th>Kuantitas</th>
                                 <th>Harga</th>
-                                <th>Gambar</th>
                                 <th>Hapus</th>
                             </tr>
                         
                             <?php $totalprice = 0; ?>
                             <?php $totalproduct=0;  ?>
-                                
+                            
+                            <!-- alert message -->
                             @if($cart->isEmpty()) 
                                 <tr>
                                     <td colspan="5">Keranjang Mu Kosong</td>
@@ -223,6 +225,7 @@
                                 <tr>
 
                                 <tr>
+                                    <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
                                     <td>{{$cart->product_title}}
                                     </td>
                                     <td>
@@ -239,9 +242,8 @@
                                         </form>
                                     </td>
                                     <td>Rp{{$cart->price}}</td>
-                                    <td style="width: 55px;"><img src="/product/{{$cart->image}}"></td>
                                     <td>
-                                        <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}">Hapus</a>
+                                        <a class="btn btn-danger cart" onclick="return confirm('Yakin ingin menghapus produk ini?')" href="{{url('/remove_cart',$cart->id)}}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
 
@@ -256,9 +258,13 @@
                     </table>
                 </div>
 
-                    <div class="cart-actions" style="margin-top: 30px;">
-                        <span>Harga Total: Rp{{$totalprice}}</span><br>
-                    </div>
+                <div class="cart-actions d-none d-md-block">
+                    <span>Harga Total: Rp{{ $totalprice }}</span><br>
+                </div>
+
+                <div class="cart-actions d-md-none" style="margin-top: 20px;">
+                    <span>Harga Total: Rp{{ $totalprice }}</span><br>
+                </div>
 
 
                     <div class="button-container">

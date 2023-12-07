@@ -1,10 +1,9 @@
-
-
 <section class="slider_section" style="background-color: #2E68A2;">
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-md-7 col-12">
                 <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+                   <!--Bagian Kalimat Penyambut-->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="container ">
@@ -31,6 +30,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="carousel-item ">
                             <div class="container ">
                                 <div class="row">
@@ -57,6 +57,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="carousel-item">
                             <div class="container ">
                                 <div class="row">
@@ -83,6 +84,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--Bagian Indikator untuk memindahkan slide-->
                     <div class="container">
                         <ol class="carousel-indicators">
                             <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
@@ -90,14 +93,18 @@
                             <li data-target="#customCarousel1" data-slide-to="2"></li>
                         </ol>
                     </div>
+
                 </div>
             </div>
+
+            <!--Gambar-->
             <div class="col-lg-5 col-md-5 col-12 d-none d-md-block">
                 <img src="images/slider.png" style="  width: 100%;">
             </div>
             <div class="col-lg-4 col-md-4 col-12 d-md-none">
                 <img src="images/slider.png" alt="" class="mx-auto d-block" style="  width: 70%; ">
             </div>
+
         </div>
     </div>
 </section>

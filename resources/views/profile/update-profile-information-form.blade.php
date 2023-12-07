@@ -1,5 +1,6 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
+        <!-- Judul bagian form: Informasi Profil -->
         {{ __('Informasi Profil') }}
     </x-slot>
 

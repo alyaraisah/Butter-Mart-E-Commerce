@@ -39,6 +39,15 @@
     .table-title
     {
       background-color: #191c24;
+      width: 100px;
+      height: 50px;
+    }
+
+    @media (max-width: 767px) {
+        .center{
+          width: 80%;
+          
+        }
     }
   </style>
 
@@ -62,8 +71,8 @@
 
                 <form action="{{url('/add_category')}}" method="POST">
                   @csrf
-                  <input class="input_color" type="text" name="category" placeholder="Write category name">
-                  <input type="submit" class="btn btn-primary" name="submit" value="Tambah Kategori">
+                  <input class="input_color" type="text" name="category" placeholder="Tulis Nama Kategori">
+                  <input type="submit" class="btn btn-primary" style="margin-left: 5px;" name="submit" value="Tambah">
                 </form>
 
             </div>
@@ -79,11 +88,11 @@
 
                 <tr>
 
-                  <td>{{$data->category_name}}</td>
+                  <td style="height: 50px;">{{$data->category_name}}</td>
                   
                   <td>
 
-                    <a onclick="return confirm('Apakah Kamu Yakin ingin Mehapus Kategori Ini?')" class="btn btn-danger" href="{{url('delete_category', $data->id)}}">Hapus</a>
+                    <a onclick="return confirm('Apakah Kamu Yakin ingin Menghapus Kategori Ini?')" class="btn btn-danger" href="{{url('delete_category', $data->id)}}">Hapus</a>
 
                   </td>
 
