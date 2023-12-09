@@ -71,6 +71,14 @@
 
                 <h2 class="font_size">Lihat Produk</h2>
 
+                <div style="margin: auto; padding-top:25px; text-align:center;">
+                    <form action="{{ url('search3') }}" method="get">
+                        @csrf
+                        <input type="text" name="search3" id="" placeholder="Cari Produk?" style="color: black;">
+                        <input type="submit" value="Cari" class="btn btn-outline-primary" id="">
+                    </form>
+                </div>
+
                 <div class="table-responsive">
                     <table class="center">
 
@@ -96,7 +104,7 @@
                         <tr>
                             <td>{{$counter}}</td>
                             <td>{{$product->title}}</td>
-                            <td>{{$product->description}}</td>
+                            <td>{{ Illuminate\Support\Str::limit($product->description, 30) }}</td>
                             <td>{{$product->quantity}}</td>
                             <td>{{$product->category}}</td>
                             <td>{{$product->price}}</td>

@@ -72,7 +72,7 @@
                 <form action="{{url('search')}}" method="get">
                     @csrf
                     <input type="text" name="search" id="" placeholder="Cari Apa?" style="color: black;">
-                    <input type="submit" value="Search" class="btn btn-outline-primary" id="">
+                    <input type="submit" value="Cari" class="btn btn-outline-primary" id="">
 
                 </form>
             </div>
@@ -149,7 +149,7 @@
                     </tr>
 
                     <tr class="th_deg">
-                        <td colspan="11" style="text-align: center; padding:10px;">
+                        <td colspan="12" style="text-align: center; padding:10px;">
                             @if(count($orders) === 0)
                                 Belum ada order
                             @endif

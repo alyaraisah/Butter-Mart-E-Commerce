@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
           <a class="sidebar-brand brand-logo" href="/redirect" style="color:white">Butter Mart<!--<img  src="/images/favicon.png" alt="#" />--></a>
-          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="admin/assets/images/logo-mini.svg" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="admin/assets/images/logo-mini.png" alt="logo" /></a>
         </div>
 
         <ul class="nav">
@@ -69,7 +69,7 @@
             </a>
           </li>
 
-          <li class="nav-item menu-items">
+          <!--<li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
@@ -79,12 +79,30 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('/view_product')}}">Tambah Produk</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('view_product')}}">Tambah Produk</a></li>
                 <li class="nav-item"> 
-                  <a class="nav-link" href="{{url('/show_product')}}">Lihat Produk</a>
+                  <a class="nav-link" href="{{url('show_product')}}">Lihat Produk</a>
                 </li>
               </ul>
             </div>
+          </li>-->
+          
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('view_product')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Tambah Produk</span>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('show_product')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Lihat Produk</span>
+            </a>
           </li>
 
           <li class="nav-item menu-items">

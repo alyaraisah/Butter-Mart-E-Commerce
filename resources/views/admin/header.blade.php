@@ -54,7 +54,7 @@
                             Tambah Produk
                         @elseif(Request::is('show_product'))
                             Lihat Produk
-                        @elseif(Request::is('update_product'))
+                        @elseif(Request::is('update_product/*'))
                             Edit Produk
                         @elseif(Request::is('view_category'))
                             Kategori

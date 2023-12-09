@@ -16,6 +16,7 @@ use App\Models\User;
 
 use App\Models\Cart;
 
+
 use PDF;
 
 class AdminController extends Controller
@@ -233,6 +234,22 @@ class AdminController extends Controller
         $searchText = $request->search2;
         $carts = Cart::where('name', 'LIKE', '%' . $searchText . '%')->orwhere('product_title', 'LIKE', '%' . $searchText . '%')->get();
         return view('admin.cart', compact('carts'));
+    }
+
+    public function searchdata3(Request $request)
+    {
+        $product = Product::all(); // Fetch all products initially
+
+        $searchText = $request->search3;
+
+        // If there is a search text, filter the products
+        if ($searchText) {
+            $product = Product::where('title', 'LIKE', '%' . $searchText . '%')
+                            ->orWhere('description', 'LIKE', '%' . $searchText . '%')
+                            ->get();
+        }
+
+        return view('admin.show_product', compact('product'));
     }
 
 
